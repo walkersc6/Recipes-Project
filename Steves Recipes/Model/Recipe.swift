@@ -9,10 +9,10 @@ import Foundation
 import SwiftData
 
 @Model
-final class Animal {
+final class Recipe {
     var name: String
     var diet: Diet
-    var category: AnimalCategory?
+    var category: Category?
     
     init(name: String, diet: Diet) {
         self.name = name
@@ -20,7 +20,7 @@ final class Animal {
     }
 }
 
-extension Animal {
+extension Recipe {
     enum Diet: String, CaseIterable, Codable {
         case herbivorous = "Herbivore"
         case carnivorous = "Carnivore"

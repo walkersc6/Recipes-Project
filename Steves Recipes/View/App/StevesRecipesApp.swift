@@ -9,16 +9,11 @@ The main app, which creates a scene that shows the content view and sets the
 import SwiftUI
 
 @main
-struct SwiftDataAnimalsApp: App {
+struct StevesRecipesApp: App {
     var body: some Scene {
         WindowGroup() {
             ContentView()
         }
-        .modelContainer(for: AnimalCategory.self)
-        #if os(macOS)
-        .commands {
-            SidebarCommands()
-        }
-        #endif
+        .modelContainer(for: Category.self)
     }
 }

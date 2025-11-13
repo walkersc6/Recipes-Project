@@ -7,43 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		681BB4F02A8BC8A100986639 /* SampleData+Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681BB4EF2A8BC8A100986639 /* SampleData+Animal.swift */; };
+		3FFAE7322EC636C300B1617A /* SwiftDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFAE7312EC636C300B1617A /* SwiftDataViewModel.swift */; };
+		681BB4F02A8BC8A100986639 /* SampleData+Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681BB4EF2A8BC8A100986639 /* SampleData+Recipe.swift */; };
 		682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAAD2A8D0BDE00B53876 /* ModelContainerPreview.swift */; };
 		682FDAB32A8D3BB900B53876 /* Preview+ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAB22A8D3BB900B53876 /* Preview+ModelContainer.swift */; };
-		68BB54662A701B4B008EC4A5 /* SwiftDataAnimalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54652A701B4B008EC4A5 /* SwiftDataAnimalsApp.swift */; };
+		68BB54662A701B4B008EC4A5 /* StevesRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */; };
 		68BB546A2A701B4E008EC4A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BB54692A701B4E008EC4A5 /* Assets.xcassets */; };
 		68BB546D2A701B4E008EC4A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BB546C2A701B4E008EC4A5 /* Preview Assets.xcassets */; };
 		68BB54772A701C1C008EC4A5 /* NavigationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54752A701C1C008EC4A5 /* NavigationContext.swift */; };
-		68BB54782A701C1C008EC4A5 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54762A701C1C008EC4A5 /* Animal.swift */; };
+		68BB54782A701C1C008EC4A5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54762A701C1C008EC4A5 /* Recipe.swift */; };
 		68BB547E2A701C22008EC4A5 /* ThreeColumnContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB547A2A701C22008EC4A5 /* ThreeColumnContentView.swift */; };
 		68BB547F2A701C22008EC4A5 /* AnimalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB547B2A701C22008EC4A5 /* AnimalDetailView.swift */; };
 		68BB54802A701C22008EC4A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB547C2A701C22008EC4A5 /* ContentView.swift */; };
 		68C721262A72DFC700D129C5 /* AnimalEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C721252A72DFC700D129C5 /* AnimalEditor.swift */; };
-		68C7212A2A72FE0D00D129C5 /* AnimalCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C721292A72FE0D00D129C5 /* AnimalCategory.swift */; };
-		68C7212C2A72FF8400D129C5 /* SampleData+AnimalCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C7212B2A72FF8400D129C5 /* SampleData+AnimalCategory.swift */; };
+		68C7212A2A72FE0D00D129C5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C721292A72FE0D00D129C5 /* Category.swift */; };
+		68C7212C2A72FF8400D129C5 /* SampleData+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C7212B2A72FF8400D129C5 /* SampleData+Category.swift */; };
 		68E1B4792A7072DF0066CFE9 /* AnimalCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B4782A7072DF0066CFE9 /* AnimalCategoryListView.swift */; };
 		68E1B47F2A707A7E0066CFE9 /* AnimalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B47E2A707A7E0066CFE9 /* AnimalListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		19F73108E181ABC96D86A7CC /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
-		316121F5352DF6A915F50793 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
-		681BB4EF2A8BC8A100986639 /* SampleData+Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+Animal.swift"; sourceTree = "<group>"; };
+		19F73108E181ABC96D86A7CC /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		316121F5352DF6A915F50793 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		3FFAE7312EC636C300B1617A /* SwiftDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataViewModel.swift; sourceTree = "<group>"; };
+		681BB4EF2A8BC8A100986639 /* SampleData+Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+Recipe.swift"; sourceTree = "<group>"; };
 		682FDAAD2A8D0BDE00B53876 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		682FDAB22A8D3BB900B53876 /* Preview+ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preview+ModelContainer.swift"; sourceTree = "<group>"; };
-		68BB54622A701B4B008EC4A5 /* SwiftDataAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		68BB54652A701B4B008EC4A5 /* SwiftDataAnimalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataAnimalsApp.swift; sourceTree = "<group>"; };
+		68BB54622A701B4B008EC4A5 /* Steves Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Steves Recipes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StevesRecipesApp.swift; sourceTree = "<group>"; };
 		68BB54692A701B4E008EC4A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68BB546C2A701B4E008EC4A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		68BB54732A701B86008EC4A5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		68BB54752A701C1C008EC4A5 /* NavigationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContext.swift; sourceTree = "<group>"; };
-		68BB54762A701C1C008EC4A5 /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		68BB54762A701C1C008EC4A5 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		68BB547A2A701C22008EC4A5 /* ThreeColumnContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeColumnContentView.swift; sourceTree = "<group>"; };
 		68BB547B2A701C22008EC4A5 /* AnimalDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailView.swift; sourceTree = "<group>"; };
 		68BB547C2A701C22008EC4A5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		68C721252A72DFC700D129C5 /* AnimalEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalEditor.swift; sourceTree = "<group>"; };
-		68C721292A72FE0D00D129C5 /* AnimalCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCategory.swift; sourceTree = "<group>"; };
-		68C7212B2A72FF8400D129C5 /* SampleData+AnimalCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+AnimalCategory.swift"; sourceTree = "<group>"; };
+		68C721292A72FE0D00D129C5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		68C7212B2A72FF8400D129C5 /* SampleData+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+Category.swift"; sourceTree = "<group>"; };
 		68E1B4782A7072DF0066CFE9 /* AnimalCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCategoryListView.swift; sourceTree = "<group>"; };
 		68E1B47E2A707A7E0066CFE9 /* AnimalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,11 +69,28 @@
 			name = Configuration;
 			sourceTree = "<group>";
 		};
+		3FFAE72F2EC6357D00B1617A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				68BB54752A701C1C008EC4A5 /* NavigationContext.swift */,
+				3FFAE7312EC636C300B1617A /* SwiftDataViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3FFAE7302EC635DC00B1617A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		681BB4EC2A8BC35000986639 /* SampleData */ = {
 			isa = PBXGroup;
 			children = (
-				68C7212B2A72FF8400D129C5 /* SampleData+AnimalCategory.swift */,
-				681BB4EF2A8BC8A100986639 /* SampleData+Animal.swift */,
+				68C7212B2A72FF8400D129C5 /* SampleData+Category.swift */,
+				681BB4EF2A8BC8A100986639 /* SampleData+Recipe.swift */,
 			);
 			path = SampleData;
 			sourceTree = "<group>";
@@ -89,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				68BB54732A701B86008EC4A5 /* README.md */,
-				68BB54642A701B4B008EC4A5 /* SwiftDataAnimals */,
+				68BB54642A701B4B008EC4A5 /* Steves Recipes */,
 				68BB54632A701B4B008EC4A5 /* Products */,
 				395C68324716D4A0DBA4F82A /* Configuration */,
 				F9617F9877E2C83A067A0A71 /* LICENSE */,
@@ -99,23 +118,23 @@
 		68BB54632A701B4B008EC4A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68BB54622A701B4B008EC4A5 /* SwiftDataAnimals.app */,
+				68BB54622A701B4B008EC4A5 /* Steves Recipes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		68BB54642A701B4B008EC4A5 /* SwiftDataAnimals */ = {
+		68BB54642A701B4B008EC4A5 /* Steves Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				68BB54652A701B4B008EC4A5 /* SwiftDataAnimalsApp.swift */,
-				68BB54742A701C1C008EC4A5 /* Models */,
-				68BB54792A701C22008EC4A5 /* Views */,
+				68BB54742A701C1C008EC4A5 /* Model */,
+				68BB54792A701C22008EC4A5 /* View */,
+				3FFAE72F2EC6357D00B1617A /* ViewModel */,
 				682FDAB42A8D3DC900B53876 /* PreviewHelper */,
 				681BB4EC2A8BC35000986639 /* SampleData */,
 				68BB54692A701B4E008EC4A5 /* Assets.xcassets */,
 				68BB546B2A701B4E008EC4A5 /* Preview Content */,
 			);
-			path = SwiftDataAnimals;
+			path = "Steves Recipes";
 			sourceTree = "<group>";
 		};
 		68BB546B2A701B4E008EC4A5 /* Preview Content */ = {
@@ -126,19 +145,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		68BB54742A701C1C008EC4A5 /* Models */ = {
+		68BB54742A701C1C008EC4A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				68BB54762A701C1C008EC4A5 /* Animal.swift */,
-				68C721292A72FE0D00D129C5 /* AnimalCategory.swift */,
-				68BB54752A701C1C008EC4A5 /* NavigationContext.swift */,
+				68BB54762A701C1C008EC4A5 /* Recipe.swift */,
+				68C721292A72FE0D00D129C5 /* Category.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		68BB54792A701C22008EC4A5 /* Views */ = {
+		68BB54792A701C22008EC4A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3FFAE7302EC635DC00B1617A /* App */,
 				68BB547C2A701C22008EC4A5 /* ContentView.swift */,
 				68BB547A2A701C22008EC4A5 /* ThreeColumnContentView.swift */,
 				68E1B4782A7072DF0066CFE9 /* AnimalCategoryListView.swift */,
@@ -146,7 +165,7 @@
 				68BB547B2A701C22008EC4A5 /* AnimalDetailView.swift */,
 				68C721252A72DFC700D129C5 /* AnimalEditor.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		F9617F9877E2C83A067A0A71 /* LICENSE */ = {
@@ -154,16 +173,15 @@
 			children = (
 				316121F5352DF6A915F50793 /* LICENSE.txt */,
 			);
-			name = LICENSE;
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		68BB54612A701B4B008EC4A5 /* SwiftDataAnimals */ = {
+		68BB54612A701B4B008EC4A5 /* Steves Recipes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68BB54702A701B4E008EC4A5 /* Build configuration list for PBXNativeTarget "SwiftDataAnimals" */;
+			buildConfigurationList = 68BB54702A701B4E008EC4A5 /* Build configuration list for PBXNativeTarget "Steves Recipes" */;
 			buildPhases = (
 				68BB545E2A701B4B008EC4A5 /* Sources */,
 				68BB545F2A701B4B008EC4A5 /* Frameworks */,
@@ -173,9 +191,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftDataAnimals;
+			name = "Steves Recipes";
 			productName = SwiftDataAnimals;
-			productReference = 68BB54622A701B4B008EC4A5 /* SwiftDataAnimals.app */;
+			productReference = 68BB54622A701B4B008EC4A5 /* Steves Recipes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +204,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2610;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					68BB54612A701B4B008EC4A5 = {
@@ -194,7 +212,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 68BB545D2A701B4B008EC4A5 /* Build configuration list for PBXProject "SwiftDataAnimals" */;
+			buildConfigurationList = 68BB545D2A701B4B008EC4A5 /* Build configuration list for PBXProject "Steves Recipes" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -207,7 +225,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68BB54612A701B4B008EC4A5 /* SwiftDataAnimals */,
+				68BB54612A701B4B008EC4A5 /* Steves Recipes */,
 			);
 		};
 /* End PBXProject section */
@@ -230,18 +248,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C721262A72DFC700D129C5 /* AnimalEditor.swift in Sources */,
-				681BB4F02A8BC8A100986639 /* SampleData+Animal.swift in Sources */,
+				681BB4F02A8BC8A100986639 /* SampleData+Recipe.swift in Sources */,
 				682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */,
-				68C7212C2A72FF8400D129C5 /* SampleData+AnimalCategory.swift in Sources */,
-				68BB54662A701B4B008EC4A5 /* SwiftDataAnimalsApp.swift in Sources */,
-				68C7212A2A72FE0D00D129C5 /* AnimalCategory.swift in Sources */,
+				68C7212C2A72FF8400D129C5 /* SampleData+Category.swift in Sources */,
+				3FFAE7322EC636C300B1617A /* SwiftDataViewModel.swift in Sources */,
+				68BB54662A701B4B008EC4A5 /* StevesRecipesApp.swift in Sources */,
+				68C7212A2A72FE0D00D129C5 /* Category.swift in Sources */,
 				68BB547E2A701C22008EC4A5 /* ThreeColumnContentView.swift in Sources */,
 				68BB54802A701C22008EC4A5 /* ContentView.swift in Sources */,
 				68BB547F2A701C22008EC4A5 /* AnimalDetailView.swift in Sources */,
 				68E1B47F2A707A7E0066CFE9 /* AnimalListView.swift in Sources */,
 				68E1B4792A7072DF0066CFE9 /* AnimalCategoryListView.swift in Sources */,
 				682FDAB32A8D3BB900B53876 /* Preview+ModelContainer.swift in Sources */,
-				68BB54782A701C1C008EC4A5 /* Animal.swift in Sources */,
+				68BB54782A701C1C008EC4A5 /* Recipe.swift in Sources */,
 				68BB54772A701C1C008EC4A5 /* NavigationContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +304,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KFPSLPBU25;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -308,6 +328,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -349,6 +370,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KFPSLPBU25;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -365,6 +387,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -378,30 +401,32 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataAnimals/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Steve's Recipes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.SwiftDataAnimals${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.is543.Project2StevesRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -413,37 +438,39 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftDataAnimals/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Steve's Recipes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.SwiftDataAnimals${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.is543.Project2StevesRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,3";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		68BB545D2A701B4B008EC4A5 /* Build configuration list for PBXProject "SwiftDataAnimals" */ = {
+		68BB545D2A701B4B008EC4A5 /* Build configuration list for PBXProject "Steves Recipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68BB546E2A701B4E008EC4A5 /* Debug */,
@@ -452,7 +479,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68BB54702A701B4E008EC4A5 /* Build configuration list for PBXNativeTarget "SwiftDataAnimals" */ = {
+		68BB54702A701B4E008EC4A5 /* Build configuration list for PBXNativeTarget "Steves Recipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68BB54712A701B4E008EC4A5 /* Debug */,

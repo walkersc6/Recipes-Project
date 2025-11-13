@@ -9,20 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct AnimalEditor: View {
-    let animal: Animal?
+    let animal: Recipe?
     
     private var editorTitle: String {
         animal == nil ? "Add Animal" : "Edit Animal"
     }
     
     @State private var name = ""
-    @State private var selectedDiet = Animal.Diet.herbivorous
-    @State private var selectedCategory: AnimalCategory?
+    @State private var selectedDiet = Recipe.Diet.herbivorous
+    @State private var selectedCategory: Category?
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
-    @Query(sort: \AnimalCategory.name) private var categories: [AnimalCategory]
+    @Query(sort: \Category.name) private var categories: [Category]
     
     var body: some View {
         NavigationStack {
@@ -30,14 +30,14 @@ struct AnimalEditor: View {
                 TextField("Name", text: $name)
                 
                 Picker("Category", selection: $selectedCategory) {
-                    Text("Select a category").tag(nil as AnimalCategory?)
+                    Text("Select a category").tag(nil as Category?)
                     ForEach(categories) { category in
-                        Text(category.name).tag(category as AnimalCategory?)
+                        Text(category.name).tag(category as Category?)
                     }
                 }
                 
                 Picker("Diet", selection: $selectedDiet) {
-                    ForEach(Animal.Diet.allCases, id: \.self) { diet in
+                    ForEach(Recipe.Diet.allCases, id: \.self) { diet in
                         Text(diet.rawValue).tag(diet)
                     }
                 }
@@ -86,7 +86,7 @@ struct AnimalEditor: View {
             animal.category = selectedCategory
         } else {
             // Add an animal.
-            let newAnimal = Animal(name: name, diet: selectedDiet)
+            let newAnimal = Recipe(name: name, diet: selectedDiet)
             newAnimal.category = selectedCategory
             modelContext.insert(newAnimal)
         }
@@ -101,6 +101,6 @@ struct AnimalEditor: View {
 
 #Preview("Edit animal") {
     ModelContainerPreview(ModelContainer.sample) {
-        AnimalEditor(animal: .kangaroo)
+        AnimalEditor(animal: .pretzels)
     }
 }

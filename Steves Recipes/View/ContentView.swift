@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @State private var navigationContext = NavigationContext()
+    @SwiftDataViewModel private var navigationContext: NavigationContext
 
     var body: some View {
         ThreeColumnContentView()

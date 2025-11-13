@@ -11,12 +11,12 @@ import SwiftData
 struct AnimalCategoryListView: View {
     @Environment(NavigationContext.self) private var navigationContext
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \AnimalCategory.name) private var animalCategories: [AnimalCategory]
+    @Query(sort: \Category.name) private var animalCategories: [Category]
     @State private var isReloadPresented = false
 
     var body: some View {
         @Bindable var navigationContext = navigationContext
-        List(selection: $navigationContext.selectedAnimalCategoryName) {
+        List(selection: $navigationContext.selectedCategoryName) {
             #if os(macOS)
             Section(navigationContext.sidebarTitle) {
                 ListCategories(animalCategories: animalCategories)
@@ -42,21 +42,21 @@ struct AnimalCategoryListView: View {
         }
         .task {
             if animalCategories.isEmpty {
-                AnimalCategory.insertSampleData(modelContext: modelContext)
+                Category.insertSampleData(modelContext: modelContext)
             }
         }
     }
     
     @MainActor
     private func reloadSampleData() {
-        navigationContext.selectedAnimal = nil
-        navigationContext.selectedAnimalCategoryName = nil
-        AnimalCategory.reloadSampleData(modelContext: modelContext)
+        navigationContext.selectedRecipe = nil
+        navigationContext.selectedCategoryName = nil
+        Category.reloadSampleData(modelContext: modelContext)
     }
 }
 
 private struct ListCategories: View {
-    var animalCategories: [AnimalCategory]
+    var animalCategories: [Category]
     
     var body: some View {
         ForEach(animalCategories) { animalCategory in
@@ -65,22 +65,22 @@ private struct ListCategories: View {
     }
 }
 
-#Preview("AnimalCategoryListView") {
-    ModelContainerPreview(ModelContainer.sample) {
-        NavigationStack {
-            AnimalCategoryListView()
-        }
-        .environment(NavigationContext())
-    }
-}
-
-#Preview("ListCategories") {
-    ModelContainerPreview(ModelContainer.sample) {
-        NavigationStack {
-            List {
-                ListCategories(animalCategories: [.amphibian, .bird])
-            }
-        }
-        .environment(NavigationContext())
-    }
-}
+//#Preview("AnimalCategoryListView") {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        NavigationStack {
+//            AnimalCategoryListView()
+//        }
+//        .environment(NavigationContext())
+//    }
+//}
+//
+//#Preview("ListCategories") {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        NavigationStack {
+//            List {
+//                ListCategories(animalCategories: [.amphibian, .bird])
+//            }
+//        }
+//        .environment(NavigationContext())
+//    }
+//}

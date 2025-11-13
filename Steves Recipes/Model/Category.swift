@@ -9,12 +9,12 @@ import Foundation
 import SwiftData
 
 @Model
-final class AnimalCategory {
+final class Category {
     @Attribute(.unique) var name: String
     // `.cascade` tells SwiftData to delete all animals contained in the
     // category when deleting it.
-    @Relationship(deleteRule: .cascade, inverse: \Animal.category)
-    var animals = [Animal]()
+    @Relationship(deleteRule: .cascade, inverse: \Recipe.category)
+    var recipes = [Recipe]()
     
     init(name: String) {
         self.name = name

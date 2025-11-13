@@ -11,7 +11,6 @@ import SwiftData
 
 struct ThreeColumnContentView: View {
     @Environment(NavigationContext.self) private var navigationContext
-    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         @Bindable var navigationContext = navigationContext
@@ -19,19 +18,19 @@ struct ThreeColumnContentView: View {
             AnimalCategoryListView()
                 .navigationTitle(navigationContext.sidebarTitle)
         } content: {
-            AnimalListView(animalCategoryName: navigationContext.selectedAnimalCategoryName)
+            AnimalListView(animalCategoryName: navigationContext.selectedCategoryName)
                 .navigationTitle(navigationContext.contentListTitle)
         } detail: {
             NavigationStack {
-                AnimalDetailView(animal: navigationContext.selectedAnimal)
+                AnimalDetailView(animal: navigationContext.selectedRecipe)
             }
         }
     }
 }
 
-#Preview {
-    ModelContainerPreview(ModelContainer.sample) {
-        ThreeColumnContentView()
-            .environment(NavigationContext())
-    }
-}
+//#Preview {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        ThreeColumnContentView()
+//            .environment(NavigationContext())
+//    }
+//}
