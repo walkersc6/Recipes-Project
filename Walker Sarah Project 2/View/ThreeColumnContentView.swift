@@ -2,8 +2,8 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-A view that shows a list of animal categories, a list of animals based on the
- selected category, and the details of the selected animal.
+A view that shows a list of recipe categories, a list of recipes based on the
+ selected category, and the details of the selected recipe.
 */
 
 import SwiftUI
@@ -15,14 +15,14 @@ struct ThreeColumnContentView: View {
     var body: some View {
         @Bindable var navigationContext = navigationContext
         NavigationSplitView(columnVisibility: $navigationContext.columnVisibility) {
-            AnimalCategoryListView()
+            RecipeCategoryListView()
                 .navigationTitle(navigationContext.sidebarTitle)
         } content: {
-            AnimalListView(animalCategoryName: navigationContext.selectedCategoryName)
+            RecipeListView(recipeCategoryName: navigationContext.selectedCategoryName)
                 .navigationTitle(navigationContext.contentListTitle)
         } detail: {
             NavigationStack {
-                AnimalDetailView(animal: navigationContext.selectedRecipe)
+                RecipeDetailView(recipe: navigationContext.selectedRecipe)
             }
         }
     }

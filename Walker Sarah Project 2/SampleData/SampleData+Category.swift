@@ -2,7 +2,7 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-An extension that creates animal category instances for use as sample data.
+An extension that creates recipe category instances for use as sample data.
 */
 
 import Foundation
@@ -17,7 +17,7 @@ extension Category {
     static let reptile = Category(name: "Reptile")
 
     static func insertSampleData(modelContext: ModelContext) {
-        // Add the animal categories to the model context.
+        // Add the recipe categories to the model context.
         modelContext.insert(desserts)
         modelContext.insert(mainDishes)
         modelContext.insert(austrian)
@@ -25,7 +25,7 @@ extension Category {
         modelContext.insert(mammal)
         modelContext.insert(reptile)
         
-        // Add the animals to the model context.
+        // Add the recipes to the model context.
         modelContext.insert(Recipe.cookies)
         modelContext.insert(Recipe.cake)
         modelContext.insert(Recipe.pretzels)
@@ -33,7 +33,7 @@ extension Category {
         modelContext.insert(Recipe.sparrow)
         modelContext.insert(Recipe.newt)
         
-        // Set the category for each animal.
+        // Set the category for each recipe.
         Recipe.cookies.category = desserts
         Recipe.cake.category = desserts
         Recipe.pretzels.category = austrian

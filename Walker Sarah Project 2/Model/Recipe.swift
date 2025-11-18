@@ -2,7 +2,7 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-A model class that defines the properties of an animal.
+A model class that defines the properties of a recipe
 */
 
 import Foundation

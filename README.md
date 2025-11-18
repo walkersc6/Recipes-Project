@@ -1,4 +1,4 @@
-# SwiftData Animals
+# Project 2 Recipes
 
 ## Configure the sample code project
 

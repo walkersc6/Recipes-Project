@@ -20,14 +20,14 @@ struct ModelContainerPreview<Content: View>: View {
     ///
     ///     #Preview {
     ///         ModelContainerPreview {
-    ///             AnimalEditor(animal: nil)
+    ///             RecipeEditor(recipe: nil)
     ///                 .environment(NavigationContext())
     ///             } modelContainer: {
-    ///                 let schema = Schema([AnimalCategory.self, Animal.self])
+    ///                 let schema = Schema([RecipeCategory.self, Recipe.self])
     ///                 let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
     ///                 let container = try ModelContainer(for: schema, configurations: [configuration])
     ///                 Task { @MainActor in
-    ///                     AnimalCategory.insertSampleData(modelContext: container.mainContext)
+    ///                     RecipeCategory.insertSampleData(modelContext: container.mainContext)
     ///                 }
     ///             return container
     ///         }
@@ -53,7 +53,7 @@ struct ModelContainerPreview<Content: View>: View {
     ///
     ///     #Preview {
     ///         ModelContainerPreview(SampleModelContainer.main) {
-    ///             AnimalEditor(animal: .kangaroo)
+    ///             RecipeEditor(recipe: .kangaroo)
     ///                 .environment(NavigationContext())
     ///         }
     ///     }

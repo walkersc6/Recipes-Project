@@ -2,17 +2,17 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-A view that displays a data entry form for editing information about an animal.
+A view that displays a data entry form for editing information about an recipe.
 */
 
 import SwiftUI
 import SwiftData
 
-struct AnimalEditor: View {
-    let animal: Recipe?
+struct RecipeEditor: View {
+    let recipe: Recipe?
     
     private var editorTitle: String {
-        animal == nil ? "Add Animal" : "Edit Animal"
+        recipe == nil ? "Add Recipe" : "Edit Recipe"
     }
     
     @State private var name = ""
@@ -65,42 +65,39 @@ struct AnimalEditor: View {
                 }
             }
             .onAppear {
-                if let animal {
-                    // Edit the incoming animal.
-                    name = animal.name
-                    selectedDiet = animal.diet
-                    selectedCategory = animal.category
+                if let recipe {
+                    // Edit the incoming recipe.
+                    name = recipe.name
+                    selectedDiet = recipe.diet
+                    selectedCategory = recipe.category
                 }
             }
-            #if os(macOS)
-            .padding()
-            #endif
         }
     }
     
     private func save() {
-        if let animal {
-            // Edit the animal.
-            animal.name = name
-            animal.diet = selectedDiet
-            animal.category = selectedCategory
+        if let recipe {
+            // Edit the recipe.
+            recipe.name = name
+            recipe.diet = selectedDiet
+            recipe.category = selectedCategory
         } else {
-            // Add an animal.
-            let newAnimal = Recipe(name: name, diet: selectedDiet)
-            newAnimal.category = selectedCategory
-            modelContext.insert(newAnimal)
+            // Add an recipe.
+            let newRecipe = Recipe(name: name, diet: selectedDiet)
+            newRecipe.category = selectedCategory
+            modelContext.insert(newRecipe)
         }
     }
 }
 
-#Preview("Add animal") {
+#Preview("Add recipe") {
     ModelContainerPreview(ModelContainer.sample) {
-        AnimalEditor(animal: nil)
+        RecipeEditor(recipe: nil)
     }
 }
 
-#Preview("Edit animal") {
+#Preview("Edit recipe") {
     ModelContainerPreview(ModelContainer.sample) {
-        AnimalEditor(animal: .pretzels)
+        RecipeEditor(recipe: .pretzels)
     }
 }

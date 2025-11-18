@@ -2,7 +2,7 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-An extension that creates animal instances for use as sample data.
+An extension that creates recipe instances for use as sample data.
 */
 
 import Foundation

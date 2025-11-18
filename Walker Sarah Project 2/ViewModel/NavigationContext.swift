@@ -35,11 +35,11 @@ class NavigationContext: ContextReferencing {
         }
     }
     
-//    init(selectedAnimalCategoryName: String? = nil,
-//         selectedAnimal: Recipe? = nil,
+//    init(selectedRecipeCategoryName: String? = nil,
+//         selectedRecipe: Recipe? = nil,
 //         columnVisibility: NavigationSplitViewVisibility = .automatic) {
-//        self.selectedAnimalCategoryName = selectedAnimalCategoryName
-//        self.selectedAnimal = selectedAnimal
+//        self.selectedRecipeCategoryName = selectedRecipeCategoryName
+//        self.selectedRecipe = selectedRecipe
 //        self.columnVisibility = columnVisibility
 //    }
 }
