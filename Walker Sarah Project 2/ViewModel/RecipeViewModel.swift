@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Observable
-class NavigationContext: ContextReferencing {
+class RecipeViewModel: ContextReferencing {
     private var modelContext: ModelContext
 
     var selectedCategoryName: String?
