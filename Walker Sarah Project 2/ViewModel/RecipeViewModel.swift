@@ -32,6 +32,12 @@ class RecipeViewModel: ContextReferencing {
         
         return (try? modelContext.fetch(descriptor)) ?? []
     }
+    
+    var recipes: [Recipe] {
+        let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
+        
+        return (try? modelContext.fetch(descriptor)) ?? []
+    }
 
     // read (all) recipes
     // read favorites
@@ -58,6 +64,7 @@ class RecipeViewModel: ContextReferencing {
         }
         
         modelContext.delete(recipe)
+        update()
     }
     
     func ensureSomeDataExists()     {
@@ -65,19 +72,32 @@ class RecipeViewModel: ContextReferencing {
         if recipeCategories.isEmpty {
             Category.insertSampleData(modelContext: modelContext)
         }
+        update()
     }
     
     func reloadSampleData() {
         selectedRecipe = nil
         selectedCategoryName = nil
         Category.reloadSampleData(modelContext: modelContext)
+        update()
+    }
+    
+    func removeRecipes(at indexSet: IndexSet) {
+        for index in indexSet {
+            let recipeToDelete = recipes[index]
+            if selectedRecipe?.persistentModelID == recipeToDelete.persistentModelID { //how to access auto generated ID
+                selectedRecipe = nil
+            }
+            modelContext.delete(recipeToDelete)
+        }
+        update()
     }
     // ..
     
     // MARK: - Helpers
     
     func update() {
-        // TODO
+        // TODO: reload the stored properties (recipes, categories, whatever we're storing
     }
     
     
