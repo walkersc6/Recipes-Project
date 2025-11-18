@@ -49,7 +49,7 @@ private struct RecipeList: View {
         .overlay {
             if recipes.isEmpty {
                 ContentUnavailableView {
-                    Label("No recipes in this category", systemImage: "pawprint")
+                    Label("No recipes in this category", systemImage: Default.imageName)
                 } description: {
                     AddRecipeButton(isActive: $isEditorPresented)
                 }
@@ -80,8 +80,8 @@ private struct AddRecipeButton: View {
         Button {
             isActive = true
         } label: {
-            Label("Add an recipe", systemImage: "plus")
-                .help("Add an recipe")
+            Label("Add a recipe", systemImage: "plus")
+                .help("Add a recipe")
         }
     }
 }

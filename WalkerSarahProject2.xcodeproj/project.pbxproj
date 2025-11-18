@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -49,6 +49,10 @@
 		68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryListView.swift; sourceTree = "<group>"; };
 		68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9C45E2E62ECC1A02004B3D6E /* Utility */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utility; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		68BB545F2A701B4B008EC4A5 /* Frameworks */ = {
@@ -126,6 +130,7 @@
 		68BB54642A701B4B008EC4A5 /* Walker Sarah Project 2 */ = {
 			isa = PBXGroup;
 			children = (
+				9C45E2E62ECC1A02004B3D6E /* Utility */,
 				68BB54742A701C1C008EC4A5 /* Model */,
 				68BB54792A701C22008EC4A5 /* View */,
 				3FFAE72F2EC6357D00B1617A /* ViewModel */,
@@ -190,6 +195,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9C45E2E62ECC1A02004B3D6E /* Utility */,
 			);
 			name = WalkerSarahProject2;
 			productName = SwiftDataAnimals;

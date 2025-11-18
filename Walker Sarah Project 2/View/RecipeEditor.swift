@@ -2,7 +2,7 @@
 See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
-A view that displays a data entry form for editing information about an recipe.
+A view that displays a data entry form for editing information about a recipe.
 */
 
 import SwiftUI
@@ -82,7 +82,7 @@ struct RecipeEditor: View {
             recipe.diet = selectedDiet
             recipe.category = selectedCategory
         } else {
-            // Add an recipe.
+            // Add a recipe.
             let newRecipe = Recipe(name: name, diet: selectedDiet)
             newRecipe.category = selectedCategory
             modelContext.insert(newRecipe)
