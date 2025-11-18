@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @SwiftDataViewModel private var navigationContext: NavigationContext
+    @SwiftDataViewModel private var navigationContext: RecipeViewModel
 
     var body: some View {
         ThreeColumnContentView()

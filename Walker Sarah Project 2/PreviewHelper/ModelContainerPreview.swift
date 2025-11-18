@@ -21,7 +21,7 @@ struct ModelContainerPreview<Content: View>: View {
     ///     #Preview {
     ///         ModelContainerPreview {
     ///             RecipeEditor(recipe: nil)
-    ///                 .environment(NavigationContext())
+    ///                 .environment(RecipeViewModel())
     ///             } modelContainer: {
     ///                 let schema = Schema([RecipeCategory.self, Recipe.self])
     ///                 let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
@@ -54,7 +54,7 @@ struct ModelContainerPreview<Content: View>: View {
     ///     #Preview {
     ///         ModelContainerPreview(SampleModelContainer.main) {
     ///             RecipeEditor(recipe: .kangaroo)
-    ///                 .environment(NavigationContext())
+    ///                 .environment(RecipeViewModel())
     ///         }
     ///     }
     ///

@@ -13,7 +13,7 @@ struct RecipeDetailView: View {
     @State private var isEditing = false
     @State private var isDeleting = false
     @Environment(\.modelContext) private var modelContext
-    @Environment(NavigationContext.self) private var navigationContext
+    @Environment(RecipeViewModel.self) private var navigationContext
 
     var body: some View {
         if let recipe {
@@ -79,6 +79,6 @@ private struct RecipeDetailContentView: View {
 //#Preview {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        RecipeDetailView(recipe: .kangaroo)
-//            .environment(NavigationContext())
+//            .environment(RecipeViewModel())
 //    }
 //}

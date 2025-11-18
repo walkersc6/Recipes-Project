@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct RecipeCategoryListView: View {
-    @Environment(NavigationContext.self) private var navigationContext
+    @Environment(RecipeViewModel.self) private var navigationContext
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Category.name) private var recipeCategories: [Category]
     @State private var isReloadPresented = false
@@ -64,7 +64,7 @@ private struct ListCategories: View {
 //        NavigationStack {
 //            RecipeCategoryListView()
 //        }
-//        .environment(NavigationContext())
+//        .environment(RecipeViewModel())
 //    }
 //}
 //
@@ -75,6 +75,6 @@ private struct ListCategories: View {
 //                ListCategories(recipeCategories: [.amphibian, .bird])
 //            }
 //        }
-//        .environment(NavigationContext())
+//        .environment(RecipeViewModel())
 //    }
 //}

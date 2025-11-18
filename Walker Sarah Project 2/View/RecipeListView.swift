@@ -22,7 +22,7 @@ struct RecipeListView: View {
 
 private struct RecipeList: View {
     let recipeCategoryName: String
-    @Environment(NavigationContext.self) private var navigationContext
+    @Environment(RecipeViewModel.self) private var navigationContext
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Recipe.name) private var recipes: [Recipe]
     @State private var isEditorPresented = false
@@ -90,7 +90,7 @@ private struct AddRecipeButton: View {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        NavigationStack {
 //            RecipeListView(recipeCategoryName: Category.mammal.name)
-//                .environment(NavigationContext())
+//                .environment(RecipeViewModel())
 //        }
 //    }
 //}
@@ -104,7 +104,7 @@ private struct AddRecipeButton: View {
 //#Preview("No recipes") {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        RecipeList(recipeCategoryName: Category.fish.name)
-//            .environment(NavigationContext())
+//            .environment(RecipeViewModel())
 //    }
 //}
 //

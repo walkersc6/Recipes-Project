@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct ThreeColumnContentView: View {
-    @Environment(NavigationContext.self) private var navigationContext
+    @Environment(RecipeViewModel.self) private var navigationContext
     
     var body: some View {
         @Bindable var navigationContext = navigationContext
@@ -31,6 +31,6 @@ struct ThreeColumnContentView: View {
 //#Preview {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        ThreeColumnContentView()
-//            .environment(NavigationContext())
+//            .environment(RecipeViewModel())
 //    }
 //}
