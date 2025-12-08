@@ -39,7 +39,7 @@ class RecipeViewModel: ContextReferencing {
     
     var recipes: [Recipe] {
         // let
-        var descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
+        let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
         //Claude: https://claude.ai/share/bdf88d59-28fd-4807-abbd-5ab154aaac9c
 //        if let selectedCategoryName {
 //            descriptor.predicate = #Predicate<Recipe> { recipe in
