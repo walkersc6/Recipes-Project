@@ -14,7 +14,9 @@ struct RecipeCategoryListView: View {
 
     var body: some View {
         @Bindable var recipeViewModel = recipeViewModel
+
         List(selection: $recipeViewModel.selectedCategoryName) {
+            Text("All Recipes")
             ListCategories(recipeCategories: recipeViewModel.recipeCategories)
         }
         .alert("Reload Sample Data?", isPresented: $isReloadPresented) {

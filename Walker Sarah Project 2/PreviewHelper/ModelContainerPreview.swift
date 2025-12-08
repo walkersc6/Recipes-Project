@@ -27,7 +27,7 @@ struct ModelContainerPreview<Content: View>: View {
     ///                 let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
     ///                 let container = try ModelContainer(for: schema, configurations: [configuration])
     ///                 Task { @MainActor in
-    ///                     RecipeCategory.insertSampleData(modelContext: container.mainContext)
+    ///                     RecipeCategory.insertSampleData(recipeViewModel: container.mainContext)
     ///                 }
     ///             return container
     ///         }

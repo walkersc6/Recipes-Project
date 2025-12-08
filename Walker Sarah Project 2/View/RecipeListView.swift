@@ -11,6 +11,8 @@ import SwiftData
 struct RecipeListView: View {
     @Environment(RecipeViewModel.self) private var recipeViewModel
     
+    let recipeCategoryName: String?
+    
     var body: some View {
         if let recipeCategoryName = recipeViewModel.selectedCategoryName {
             RecipeList(recipeCategoryName: recipeCategoryName)
@@ -24,13 +26,19 @@ private struct RecipeList: View {
     let recipeCategoryName: String
     @Environment(RecipeViewModel.self) private var recipeViewModel
     @State private var isEditorPresented = false
+    @State private var searchText = ""
 
-    // don't need an initializer
+    // Compute filtered results based on search text
+    private var searchResults: [Recipe] {
+        let all = recipeViewModel.recipes
+        guard !searchText.isEmpty else { return all }
+        return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
     
     var body: some View {
         @Bindable var recipeViewModel = recipeViewModel
         List(selection: $recipeViewModel.selectedRecipe) {
-            ForEach(recipeViewModel.recipes) { recipe in
+            ForEach(searchResults) { recipe in
                 NavigationLink(recipe.name, value: recipe)
             }
             .onDelete(perform: removeRecipes)
@@ -39,7 +47,7 @@ private struct RecipeList: View {
             RecipeEditor(recipe: nil)
         }
         .overlay {
-            if recipeViewModel.recipes.isEmpty {
+            if searchResults.isEmpty {
                 ContentUnavailableView {
                     Label("No recipes in this category", systemImage: Default.imageName)
                 } description: {
@@ -52,13 +60,12 @@ private struct RecipeList: View {
                 AddRecipeButton(isActive: $isEditorPresented)
             }
         }
+        .searchable(text: $searchText, prompt: "Search items")
     }
     
     private func removeRecipes(at indexSet: IndexSet) {
         recipeViewModel.removeRecipes(at: indexSet)
     }
-    
-
 }
 
 private struct AddRecipeButton: View {

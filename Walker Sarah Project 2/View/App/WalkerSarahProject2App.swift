@@ -9,7 +9,7 @@ The main app, which creates a scene that shows the content view and sets the
 import SwiftUI
 
 @main
-struct StevesRecipesApp: App {
+struct WalkerSarahProject2App: App {
     var body: some Scene {
         WindowGroup() {
             ContentView()

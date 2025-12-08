@@ -12,11 +12,12 @@ import SwiftData
 final class Recipe {
     var name: String
     var diet: Diet
-    var category: Category?
+    var categories: [Category]
     
     init(name: String, diet: Diet) {
         self.name = name
         self.diet = diet
+        categories = []
     }
 }
 

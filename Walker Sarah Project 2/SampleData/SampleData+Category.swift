@@ -34,12 +34,13 @@ extension Category {
         modelContext.insert(Recipe.newt)
         
         // Set the category for each recipe.
-        Recipe.cookies.category = desserts
-        Recipe.cake.category = desserts
-        Recipe.pretzels.category = austrian
-        Recipe.gibbon.category = mammal
-        Recipe.sparrow.category = mainDishes
-        Recipe.newt.category = desserts
+        Recipe.cookies.categories.append(desserts)
+        Recipe.cake.categories.append(desserts)
+        Recipe.pretzels.categories.append(austrian)
+        Recipe.pretzels.categories.append(desserts)
+        Recipe.gibbon.categories.append(mammal)
+        Recipe.sparrow.categories.append(mainDishes)
+        Recipe.newt.categories.append(desserts)
     }
     
     static func reloadSampleData(modelContext: ModelContext) {

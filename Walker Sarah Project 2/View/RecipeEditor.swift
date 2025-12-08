@@ -20,7 +20,7 @@ struct RecipeEditor: View {
     @State private var selectedCategory: Category?
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
+    @Environment(RecipeViewModel.self) private var recipeViewModel
     
     @Query(sort: \Category.name) private var categories: [Category]
     
@@ -69,7 +69,7 @@ struct RecipeEditor: View {
                     // Edit the incoming recipe.
                     name = recipe.name
                     selectedDiet = recipe.diet
-                    selectedCategory = recipe.category
+                    selectedCategory = recipe.categories.first // always return optional
                 }
             }
         }
@@ -80,12 +80,21 @@ struct RecipeEditor: View {
             // Edit the recipe.
             recipe.name = name
             recipe.diet = selectedDiet
-            recipe.category = selectedCategory
+            if let category = selectedCategory {
+                recipe.categories = [category]
+            } else {
+                recipe.categories = []
+            }
+            recipeViewModel.update()
         } else {
             // Add a recipe.
             let newRecipe = Recipe(name: name, diet: selectedDiet)
-            newRecipe.category = selectedCategory
-            modelContext.insert(newRecipe)
+            if let category = selectedCategory {
+                newRecipe.categories = [category]
+            } else {
+                newRecipe.categories = []
+            }
+            recipeViewModel.insert(newRecipe)
         }
     }
 }

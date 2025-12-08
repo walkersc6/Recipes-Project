@@ -20,6 +20,10 @@ class RecipeViewModel: ContextReferencing {
     
     var sidebarTitle = "Categories"
     
+    
+    // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
+    private var refreshID = UUID()
+    
 
     // MARK: - Initialization
     required init(modelContext: ModelContext) {
@@ -34,7 +38,14 @@ class RecipeViewModel: ContextReferencing {
     }
     
     var recipes: [Recipe] {
-        let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
+        // let
+        var descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
+        //Claude: https://claude.ai/share/bdf88d59-28fd-4807-abbd-5ab154aaac9c
+//        if let selectedCategoryName {
+//            descriptor.predicate = #Predicate<Recipe> { recipe in
+//                recipe.categories?.name == selectedCategoryName
+//            }
+//        }
         
         return (try? modelContext.fetch(descriptor)) ?? []
     }
@@ -52,11 +63,20 @@ class RecipeViewModel: ContextReferencing {
         }
     }
     
+    func categoryText(for recipe: Recipe) -> String {
+        recipe.categories.compactMap(\.name).joined(separator: ", ")
+    }
+    
     // MARK: - User intents
     
     // create recipe
     // update recipe
     // delete recipe
+    func insert(_ recipe: Recipe) {
+        modelContext.insert(recipe)
+        //save()
+        update()
+    }
     
     func delete(_ recipe: Recipe) {
         if selectedRecipe == recipe {
@@ -68,7 +88,6 @@ class RecipeViewModel: ContextReferencing {
     }
     
     func ensureSomeDataExists()     {
-        
         if recipeCategories.isEmpty {
             Category.insertSampleData(modelContext: modelContext)
         }
@@ -92,12 +111,35 @@ class RecipeViewModel: ContextReferencing {
         }
         update()
     }
-    // ..
+    
+    // Claude:
+//    func save() {
+//        do {
+//            try modelContext.save()
+//        } catch {
+//            print("Error saving context: \(error)")
+//        }
+//        update()
+//    }
     
     // MARK: - Helpers
     
+//    func update() {
+//        // TODO: reload the stored properties (recipes, categories, whatever we're storing)
+//        // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
+//        refreshID = UUID()
+//    }
+    
     func update() {
-        // TODO: reload the stored properties (recipes, categories, whatever we're storing
+        // Save any pending changes
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+        
+        // Refresh the view
+        refreshID = UUID()
     }
     
     

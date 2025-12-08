@@ -49,12 +49,13 @@ struct RecipeDetailView: View {
     
     private func delete(_ recipe: Recipe) {
         recipeViewModel.selectedRecipe = nil
-        modelContext.delete(recipe)
+        recipeViewModel.delete(recipe)
     }
 }
 
 private struct RecipeDetailContentView: View {
     let recipe: Recipe
+    @Environment(RecipeViewModel.self) private var recipeViewModel
 
     var body: some View {
         VStack {
@@ -66,7 +67,7 @@ private struct RecipeDetailContentView: View {
                 HStack {
                     Text("Category")
                     Spacer()
-                    Text("\(recipe.category?.name ?? "")")
+                    Text("\(recipeViewModel.categoryText(for: recipe))")
                 }
                 HStack {
                     Text("Diet")

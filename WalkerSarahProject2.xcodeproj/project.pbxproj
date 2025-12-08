@@ -11,7 +11,7 @@
 		681BB4F02A8BC8A100986639 /* SampleData+Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681BB4EF2A8BC8A100986639 /* SampleData+Recipe.swift */; };
 		682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAAD2A8D0BDE00B53876 /* ModelContainerPreview.swift */; };
 		682FDAB32A8D3BB900B53876 /* Preview+ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAB22A8D3BB900B53876 /* Preview+ModelContainer.swift */; };
-		68BB54662A701B4B008EC4A5 /* StevesRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */; };
+		68BB54662A701B4B008EC4A5 /* WalkerSarahProject2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54652A701B4B008EC4A5 /* WalkerSarahProject2App.swift */; };
 		68BB546A2A701B4E008EC4A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BB54692A701B4E008EC4A5 /* Assets.xcassets */; };
 		68BB546D2A701B4E008EC4A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BB546C2A701B4E008EC4A5 /* Preview Assets.xcassets */; };
 		68BB54772A701C1C008EC4A5 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB54752A701C1C008EC4A5 /* RecipeViewModel.swift */; };
@@ -24,6 +24,7 @@
 		68C7212C2A72FF8400D129C5 /* SampleData+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C7212B2A72FF8400D129C5 /* SampleData+Category.swift */; };
 		68E1B4792A7072DF0066CFE9 /* RecipeCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */; };
 		68E1B47F2A707A7E0066CFE9 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */; };
+		9C4961332EDE83D300EEE6FF /* CompactLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,7 @@
 		682FDAAD2A8D0BDE00B53876 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		682FDAB22A8D3BB900B53876 /* Preview+ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preview+ModelContainer.swift"; sourceTree = "<group>"; };
 		68BB54622A701B4B008EC4A5 /* WalkerSarahProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkerSarahProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StevesRecipesApp.swift; sourceTree = "<group>"; };
+		68BB54652A701B4B008EC4A5 /* WalkerSarahProject2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkerSarahProject2App.swift; sourceTree = "<group>"; };
 		68BB54692A701B4E008EC4A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68BB546C2A701B4E008EC4A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		68BB54732A701B86008EC4A5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		68C7212B2A72FF8400D129C5 /* SampleData+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+Category.swift"; sourceTree = "<group>"; };
 		68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryListView.swift; sourceTree = "<group>"; };
 		68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLayoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,7 +87,7 @@
 		3FFAE7302EC635DC00B1617A /* App */ = {
 			isa = PBXGroup;
 			children = (
-				68BB54652A701B4B008EC4A5 /* StevesRecipesApp.swift */,
+				68BB54652A701B4B008EC4A5 /* WalkerSarahProject2App.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -164,6 +166,7 @@
 			children = (
 				3FFAE7302EC635DC00B1617A /* App */,
 				68BB547C2A701C22008EC4A5 /* ContentView.swift */,
+				9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */,
 				68BB547A2A701C22008EC4A5 /* ThreeColumnContentView.swift */,
 				68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */,
 				68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */,
@@ -260,7 +263,8 @@
 				682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */,
 				68C7212C2A72FF8400D129C5 /* SampleData+Category.swift in Sources */,
 				3FFAE7322EC636C300B1617A /* SwiftDataViewModel.swift in Sources */,
-				68BB54662A701B4B008EC4A5 /* StevesRecipesApp.swift in Sources */,
+				68BB54662A701B4B008EC4A5 /* WalkerSarahProject2App.swift in Sources */,
+				9C4961332EDE83D300EEE6FF /* CompactLayoutView.swift in Sources */,
 				68C7212A2A72FE0D00D129C5 /* Category.swift in Sources */,
 				68BB547E2A701C22008EC4A5 /* ThreeColumnContentView.swift in Sources */,
 				68BB54802A701C22008EC4A5 /* ContentView.swift in Sources */,
@@ -414,7 +418,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Let's Get Cookin'";
+				INFOPLIST_KEY_CFBundleDisplayName = "Get Cookin'";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -452,7 +456,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Let's Get Cookin'";
+				INFOPLIST_KEY_CFBundleDisplayName = "Get Cookin'";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
