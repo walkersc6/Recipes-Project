@@ -20,3 +20,9 @@ final class Category {
         self.name = name
     }
 }
+
+extension Category: CustomStringConvertible {
+    var description: String {
+        name
+    }
+}

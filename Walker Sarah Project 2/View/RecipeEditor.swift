@@ -7,6 +7,7 @@ A view that displays a data entry form for editing information about a recipe.
 
 import SwiftUI
 import SwiftData
+import MultiPicker
 
 struct RecipeEditor: View {
     let recipe: Recipe?
@@ -23,29 +24,73 @@ struct RecipeEditor: View {
     @State private var calories = ""
     @State var isFavorite: Bool
     @State private var notes = ""
-    @State private var selectedCategory: Category?
-    
+    // Claude:
+    @State private var selectedCategoryIDs: Set<PersistentIdentifier> = []
     
     @Environment(\.dismiss) private var dismiss
     @Environment(RecipeViewModel.self) private var recipeViewModel
     
     @Query(sort: \Category.name) private var categories: [Category]
     
+    
+    private var selectedCategories: [Category] {
+        categories.filter{ selectedCategoryIDs.contains($0.persistentModelID) }
+    }
+    
+    private var selectedCategoriesText: String {
+        if selectedCategoryIDs.isEmpty {
+            return "Select categories"
+        }
+        let sortedNames = selectedCategories.map { $0.name }.sorted()
+        return sortedNames.joined(separator: ", ")
+    }
+    
+    
+    
     var body: some View {
         NavigationStack {
             Form {
                 TextField("Title", text: $title)
+                // Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
+                Toggle("Favorite", isOn: $isFavorite)
                 
-                Picker("Category", selection: $selectedCategory) {
-                    Text("Select a category").tag(nil as Category?)
-                    ForEach(categories) { category in
-                        Text(category.name).tag(category as Category?)
+                
+                Section("Categories") {
+                    // Display selected categories
+                    HStack {
+                        Text("Selected")
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Text(selectedCategoriesText)
+                            .foregroundStyle(selectedCategoryIDs.isEmpty ? .secondary : .primary)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    
+                    // Navigate to custom picker
+                    NavigationLink {
+                        CategorySelectionView(selectedIDs: $selectedCategoryIDs, categories: categories)
+                    } label: {
+                        Text("Choose Categories")
                     }
                 }
+                            
+//
+//                Section("Categories") {
+//                    MultiPicker("Categories", selection: $selectedCategoryIDs) {
+//                        ForEach(categories) { category in
+//                            CategoryCell(category: category)
+//                                .mpTag(category.persistentModelID)
+//                        }
+//                    }
+//                    .mpPickerStyle(.navigationLink)
+//                }
                 
-                Picker("Author", selection: $selectedAuthor) {
-                    ForEach(Recipe.Author.allCases, id: \.self) { author in
-                        Text(author.rawValue).tag(author)
+                
+                Section("Author"){
+                    Picker("Author", selection: $selectedAuthor) {
+                        ForEach(Recipe.Author.allCases, id: \.self) { author in
+                            Text(author.rawValue).tag(author)
+                        }
                     }
                 }
                 
@@ -69,7 +114,7 @@ struct RecipeEditor: View {
                         }
                     }
                     // Require a category to save changes.
-                    .disabled($selectedCategory.wrappedValue == nil)
+                    .disabled(selectedCategories.isEmpty || title.isEmpty)
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {
@@ -83,7 +128,14 @@ struct RecipeEditor: View {
                     // Edit the incoming recipe.
                     title = recipe.title
                     selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite 
-                    selectedCategory = recipe.categories.first // always return optional
+                    isFavorite = recipe.isFavorite
+                    timeRequired = recipe.timeRequired ?? ""
+                    servings = recipe.servings
+                    expertiseRequired = recipe.expertiseRequired ?? ""
+                    calories = recipe.calories ?? ""
+                    notes = recipe.notes ?? ""
+                    
+                    selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
                 }
             }
         }
@@ -95,22 +147,41 @@ struct RecipeEditor: View {
             recipe.title = title
             // Convert enum back to String raw value for the model.
             recipe.author = selectedAuthor.rawValue
-            if let category = selectedCategory {
-                recipe.categories = [category]
-            } else {
-                recipe.categories = []
-            }
+            recipe.isFavorite = isFavorite
+            recipe.timeRequired = timeRequired.isEmpty ? nil : timeRequired
+            recipe.servings = servings
+            recipe.expertiseRequired = expertiseRequired.isEmpty ? nil : expertiseRequired
+            recipe.calories = calories.isEmpty ? nil : calories
+            recipe.notes = notes.isEmpty ? nil : notes
+            
+            recipe.categories = selectedCategories
+            
             recipeViewModel.update()
         } else {
             // Add a recipe.
-            let newRecipe = Recipe(title: title, author: selectedAuthor.rawValue, servings: servings)
-            if let category = selectedCategory {
-                newRecipe.categories = [category]
-            } else {
-                newRecipe.categories = []
-            }
+            let newRecipe = Recipe(
+                title: title,
+                author: selectedAuthor.rawValue,
+                timeRequired: timeRequired.isEmpty ? nil : timeRequired,
+                servings: servings,
+                expertiseRequired: expertiseRequired.isEmpty ? nil : expertiseRequired,
+                calories: calories.isEmpty ? nil : calories,
+                isFavorite: isFavorite, // First created from this Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace but reformatted with this Claude conversation:
+                notes: notes.isEmpty ? nil : notes
+            )
+            
+            newRecipe.categories = selectedCategories
+            
             recipeViewModel.insert(newRecipe)
         }
+    }
+}
+
+private struct CategoryCell: View {
+    let category: Category
+    
+    var body: some View {
+        Text(category.name)
     }
 }
 

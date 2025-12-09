@@ -26,6 +26,9 @@
 		68E1B47F2A707A7E0066CFE9 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */; };
 		9C4961332EDE83D300EEE6FF /* CompactLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */; };
 		9C4961362EE7B6EC00EEE6FF /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4961352EE7B6EC00EEE6FF /* MarkdownUI */; };
+		9C4961402EE8A35600EEE6FF /* MultiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9C49613F2EE8A35600EEE6FF /* MultiPicker */; };
+		9C4961422EE8B8C100EEE6FF /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961412EE8B8C100EEE6FF /* CategorySelectionView.swift */; };
+		9C4961442EE8B92100EEE6FF /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,8 @@
 		68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryListView.swift; sourceTree = "<group>"; };
 		68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLayoutView.swift; sourceTree = "<group>"; };
+		9C4961412EE8B8C100EEE6FF /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C4961402EE8A35600EEE6FF /* MultiPicker in Frameworks */,
 				9C4961362EE7B6EC00EEE6FF /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,11 +175,13 @@
 				3FFAE7302EC635DC00B1617A /* App */,
 				68BB547C2A701C22008EC4A5 /* ContentView.swift */,
 				9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */,
+				9C4961412EE8B8C100EEE6FF /* CategorySelectionView.swift */,
 				68BB547A2A701C22008EC4A5 /* ThreeColumnContentView.swift */,
 				68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */,
 				68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */,
 				68BB547B2A701C22008EC4A5 /* RecipeDetailView.swift */,
 				68C721252A72DFC700D129C5 /* RecipeEditor.swift */,
+				9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 			mainGroup = 68BB54592A701B4B008EC4A5;
 			packageReferences = (
 				9C4961342EE7B6EC00EEE6FF /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				9C49613E2EE8A35600EEE6FF /* XCRemoteSwiftPackageReference "MultiPicker" */,
 			);
 			productRefGroup = 68BB54632A701B4B008EC4A5 /* Products */;
 			projectDirPath = "";
@@ -264,10 +273,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C721262A72DFC700D129C5 /* RecipeEditor.swift in Sources */,
+				9C4961442EE8B92100EEE6FF /* CategoryRowView.swift in Sources */,
 				681BB4F02A8BC8A100986639 /* SampleData+Recipe.swift in Sources */,
 				682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */,
 				68C7212C2A72FF8400D129C5 /* SampleData+Category.swift in Sources */,
 				3FFAE7322EC636C300B1617A /* SwiftDataViewModel.swift in Sources */,
+				9C4961422EE8B8C100EEE6FF /* CategorySelectionView.swift in Sources */,
 				68BB54662A701B4B008EC4A5 /* WalkerSarahProject2App.swift in Sources */,
 				9C4961332EDE83D300EEE6FF /* CompactLayoutView.swift in Sources */,
 				68C7212A2A72FE0D00D129C5 /* Category.swift in Sources */,
@@ -518,6 +529,14 @@
 				minimumVersion = 2.4.1;
 			};
 		};
+		9C49613E2EE8A35600EEE6FF /* XCRemoteSwiftPackageReference "MultiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/toastersocks/MultiPicker.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -525,6 +544,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C4961342EE7B6EC00EEE6FF /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
+		};
+		9C49613F2EE8A35600EEE6FF /* MultiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C49613E2EE8A35600EEE6FF /* XCRemoteSwiftPackageReference "MultiPicker" */;
+			productName = MultiPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

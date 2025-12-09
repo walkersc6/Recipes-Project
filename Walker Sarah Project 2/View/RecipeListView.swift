@@ -23,9 +23,17 @@ private struct RecipeList: View {
     @Environment(RecipeViewModel.self) private var recipeViewModel
     @State private var isEditorPresented = false
     @State private var searchText = ""
+    //From Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
+    @State private var sortOption: SortOption = .title
+    @State private var sortAscending = true
 
+    // Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
+    enum SortOption: String, CaseIterable {
+        case title = "Title"
+        case dateAdded = "Date Added"
+    }
  
-    // Compute filtered results based on search text (code from class and help from Claude:)
+    // Compute filtered results based on search text (code from class and help from Claude: )
     private var searchResults: [Recipe] {
         var filtered = recipeViewModel.recipes
         
@@ -46,6 +54,23 @@ private struct RecipeList: View {
             }
         }
         
+        // Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
+        switch sortOption {
+            case .title:
+                filtered.sort { recipe1, recipe2 in
+                    let comparison = recipe1.title.localizedCaseInsensitiveCompare(recipe2.title) == .orderedAscending
+                    return sortAscending ? comparison : !comparison
+                }
+            case .dateAdded:
+                filtered.sort { recipe1, recipe2 in
+                    guard let date1 = recipe1.dateAdded, let date2 = recipe2.dateAdded else {
+                        return recipe1.dateAdded != nil
+                    }
+                    let comparison = date1 > date2  // Most recent first when ascending
+                    return sortAscending ? comparison : !comparison
+                }
+            }
+                
         return filtered
     }
 
@@ -72,6 +97,29 @@ private struct RecipeList: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 AddRecipeButton(isActive: $isEditorPresented)
+            }
+            // From Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
+            ToolbarItem(placement: .automatic) {
+                Button {
+                    sortAscending.toggle()
+                } label: {
+                    Label(
+                        sortAscending ? "Sort Ascending" : "Sort Descending",
+                        systemImage: sortAscending ? "arrow.up" : "arrow.down"
+                    )
+                }
+            }
+            
+            ToolbarItem(placement: .automatic) {
+                Menu {
+                    Picker("Sort by", selection: $sortOption) {
+                        ForEach(SortOption.allCases, id: \.self) { option in
+                            Text(option.rawValue).tag(option)
+                        }
+                    }
+                } label: {
+                    Label("Sort", systemImage: "line.horizontal.3.decrease.circle")
+                }
             }
         }
         .searchable(text: $searchText, prompt: "Search items")

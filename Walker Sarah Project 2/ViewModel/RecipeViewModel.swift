@@ -95,6 +95,11 @@ class RecipeViewModel: ContextReferencing {
         update()
     }
     
+    func insertCategory(_ category: Category) {
+        modelContext.insert(category)
+        try? modelContext.save()
+    }
+    
     func reloadSampleData() {
         selectedRecipe = nil
         selectedCategoryName = nil
