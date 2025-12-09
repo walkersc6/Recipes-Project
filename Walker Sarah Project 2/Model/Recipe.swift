@@ -33,7 +33,7 @@ final class Recipe {
         categories = []
     }
 }
-
+ // TODO: Make this include all authors in stored data so you can pick from all the authors for a recipe
 extension Recipe {
     enum Author: String, CaseIterable, Codable {
         case cookieSite = "Cookies with Karli"

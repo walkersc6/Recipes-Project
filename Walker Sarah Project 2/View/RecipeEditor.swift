@@ -24,7 +24,7 @@ struct RecipeEditor: View {
     @State private var calories = ""
     @State var isFavorite: Bool
     @State private var notes = ""
-    // Claude:
+    // Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
     @State private var selectedCategoryIDs: Set<PersistentIdentifier> = []
     
     @Environment(\.dismiss) private var dismiss
@@ -54,7 +54,7 @@ struct RecipeEditor: View {
                 // Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
                 Toggle("Favorite", isOn: $isFavorite)
                 
-                
+                // Help from Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
                 Section("Categories") {
                     // Display selected categories
                     HStack {
@@ -68,23 +68,11 @@ struct RecipeEditor: View {
                     
                     // Navigate to custom picker
                     NavigationLink {
-                        CategorySelectionView(selectedIDs: $selectedCategoryIDs, categories: categories)
+                        CategorySelectionView(selectedIDs: $selectedCategoryIDs)
                     } label: {
                         Text("Choose Categories")
                     }
                 }
-                            
-//
-//                Section("Categories") {
-//                    MultiPicker("Categories", selection: $selectedCategoryIDs) {
-//                        ForEach(categories) { category in
-//                            CategoryCell(category: category)
-//                                .mpTag(category.persistentModelID)
-//                        }
-//                    }
-//                    .mpPickerStyle(.navigationLink)
-//                }
-                
                 
                 Section("Author"){
                     Picker("Author", selection: $selectedAuthor) {
@@ -94,48 +82,56 @@ struct RecipeEditor: View {
                     }
                 }
                 
-                TextField("Time Required", text: $timeRequired)
-                TextField("Servings", text: $servings)
-                TextField("Expertise Required", text: $expertiseRequired)
-                TextField("Calories", text: $calories)
-//                TextField("Favorite", text: $isFavorite)
-                TextField("Notes", text: $notes)
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(editorTitle)
+                Section("Details") {
+                    TextField("Time Required", text: $timeRequired)
+                    TextField("Servings", text: $servings)
+                    TextField("Expertise Required", text: $expertiseRequired)
+                    TextField("Calories", text: $calories)
+                    //                TextField("Favorite", text: $isFavorite)
+                    TextField("Notes", text: $notes)
                 }
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        withAnimation {
-                            save()
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text(editorTitle)
+                    }
+                    
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            withAnimation {
+                                save()
+                                dismiss()
+                            }
+                        }
+                        // Require a category to save changes.
+                        .disabled(selectedCategories.isEmpty || title.isEmpty)
+                    }
+                    
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel", role: .cancel) {
                             dismiss()
                         }
                     }
-                    // Require a category to save changes.
-                    .disabled(selectedCategories.isEmpty || title.isEmpty)
                 }
-                
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", role: .cancel) {
-                        dismiss()
+                .onAppear {
+                    guard selectedCategoryIDs.isEmpty else {
+                        return
                     }
-                }
-            }
-            .onAppear {
-                if let recipe {
-                    // Edit the incoming recipe.
-                    title = recipe.title
-                    selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite 
-                    isFavorite = recipe.isFavorite
-                    timeRequired = recipe.timeRequired ?? ""
-                    servings = recipe.servings
-                    expertiseRequired = recipe.expertiseRequired ?? ""
-                    calories = recipe.calories ?? ""
-                    notes = recipe.notes ?? ""
-                    
-                    selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
+                    if let recipe {
+                        // Edit the incoming recipe.
+                        title = recipe.title
+                        selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite
+                        isFavorite = recipe.isFavorite
+                        timeRequired = recipe.timeRequired ?? ""
+                        servings = recipe.servings
+                        expertiseRequired = recipe.expertiseRequired ?? ""
+                        calories = recipe.calories ?? ""
+                        notes = recipe.notes ?? ""
+                        
+                        selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
+                        
+                        print("🔵 RecipeEditor onAppear - Loaded \(selectedCategoryIDs.count) category IDs")
+                        print("🔵 Category names: \(recipe.categories.map { $0.name })")
+                    }
                 }
             }
         }
@@ -166,7 +162,7 @@ struct RecipeEditor: View {
                 servings: servings,
                 expertiseRequired: expertiseRequired.isEmpty ? nil : expertiseRequired,
                 calories: calories.isEmpty ? nil : calories,
-                isFavorite: isFavorite, // First created from this Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace but reformatted with this Claude conversation:
+                isFavorite: isFavorite, // First created from this Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace but reformatted with this Claude conversation: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
                 notes: notes.isEmpty ? nil : notes
             )
             
@@ -177,6 +173,7 @@ struct RecipeEditor: View {
     }
 }
 
+// Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
 private struct CategoryCell: View {
     let category: Category
     

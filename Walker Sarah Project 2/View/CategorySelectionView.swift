@@ -6,14 +6,15 @@
 //  Copyright © 2025 Apple. All rights reserved.
 //
 
-// Claude:
+// Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
 import SwiftUI
 import SwiftData
 
 struct CategorySelectionView: View {
     @Binding var selectedIDs: Set<PersistentIdentifier>
-    let categories: [Category]
+    //let categories: [Category]
     @Environment(\.dismiss) private var dismiss
+    @Query(sort: \Category.name) private var categories: [Category]
 
     var body: some View {
         List {
@@ -35,6 +36,12 @@ struct CategorySelectionView: View {
                     dismiss()
                 }
             }
+        }
+        .onAppear {
+            print("🟢 CategorySelectionView appeared - selectedIDs count: \(selectedIDs.count)")
+        }
+        .onDisappear {
+            print("🔴 CategorySelectionView disappearing - selectedIDs count: \(selectedIDs.count)")
         }
     }
 
