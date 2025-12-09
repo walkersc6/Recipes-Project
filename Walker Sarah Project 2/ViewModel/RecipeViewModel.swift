@@ -13,8 +13,9 @@ class RecipeViewModel: ContextReferencing {
     
     // MARK: - Properties
     private var modelContext: ModelContext
-
-    var selectedCategoryName: String?
+    
+    // = "Recipes" came from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
+    var selectedCategoryName: String? = "Recipes"
     var selectedRecipe: Recipe?
     var columnVisibility: NavigationSplitViewVisibility = .automatic
     
@@ -38,15 +39,14 @@ class RecipeViewModel: ContextReferencing {
     }
     
     var recipes: [Recipe] {
-        // let
-        let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.name)])
+        let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.title)])
         //Claude: https://claude.ai/share/bdf88d59-28fd-4807-abbd-5ab154aaac9c
 //        if let selectedCategoryName {
 //            descriptor.predicate = #Predicate<Recipe> { recipe in
-//                recipe.categories?.name == selectedCategoryName
+//                recipe.categories.title == selectedCategoryName
 //            }
 //        }
-        
+//        
         return (try? modelContext.fetch(descriptor)) ?? []
     }
 
@@ -72,11 +72,6 @@ class RecipeViewModel: ContextReferencing {
     // create recipe
     // update recipe
     // delete recipe
-    func insert(_ recipe: Recipe) {
-        modelContext.insert(recipe)
-        //save()
-        update()
-    }
     
     func delete(_ recipe: Recipe) {
         if selectedRecipe == recipe {
@@ -91,6 +86,12 @@ class RecipeViewModel: ContextReferencing {
         if recipeCategories.isEmpty {
             Category.insertSampleData(modelContext: modelContext)
         }
+        update()
+    }
+    
+    func insert(_ recipe: Recipe) {
+        modelContext.insert(recipe)
+        //save()
         update()
     }
     

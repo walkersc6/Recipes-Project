@@ -14,9 +14,15 @@ struct RecipeCategoryListView: View {
 
     var body: some View {
         @Bindable var recipeViewModel = recipeViewModel
-
+        
+        // list Categories
         List(selection: $recipeViewModel.selectedCategoryName) {
-            Text("All Recipes")
+            // List option to look at all recipes
+//            Button("All Recipes") {
+//                recipeViewModel.selectedCategoryName = nil
+//            }
+            NavigationLink("All Recipes", value: "Recipes")
+
             ListCategories(recipeCategories: recipeViewModel.recipeCategories)
         }
         .alert("Reload Sample Data?", isPresented: $isReloadPresented) {

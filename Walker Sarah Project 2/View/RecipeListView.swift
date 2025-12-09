@@ -14,32 +14,48 @@ struct RecipeListView: View {
     let recipeCategoryName: String?
     
     var body: some View {
-        if let recipeCategoryName = recipeViewModel.selectedCategoryName {
-            RecipeList(recipeCategoryName: recipeCategoryName)
-        } else {
-            ContentUnavailableView("Select a category", systemImage: "sidebar.left")
-        }
+        RecipeList(recipeCategoryName: recipeViewModel.selectedCategoryName)
+//        if let recipeCategoryName = recipeViewModel.selectedCategoryName {
+//            RecipeList(recipeCategoryName: recipeCategoryName)
+//        } else {
+//            // TODO: switch this to list all recipes
+//            ContentUnavailableView("Select a category", systemImage: "sidebar.left")
+//            //AllRecipeList(recipes: recipeViewModel.recipes)
+//        }
     }
 }
 
 private struct RecipeList: View {
-    let recipeCategoryName: String
+    let recipeCategoryName: String?
     @Environment(RecipeViewModel.self) private var recipeViewModel
     @State private var isEditorPresented = false
     @State private var searchText = ""
 
-    // Compute filtered results based on search text
+ 
+    // Compute filtered results based on search text (code from class and help from Claude:)
     private var searchResults: [Recipe] {
-        let all = recipeViewModel.recipes
-        guard !searchText.isEmpty else { return all }
-        return all.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        var filtered = recipeViewModel.recipes
+        
+        // Switched from class code to code from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
+        if let categoryName = recipeCategoryName, categoryName != "Recipes" {
+            filtered = filtered.filter { recipe in recipe.categories.contains { $0.name == categoryName }
+            }
+        }
+        
+        if !searchText.isEmpty {
+            filtered = filtered.filter {
+                $0.title.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        
+        return filtered
     }
-    
+
     var body: some View {
         @Bindable var recipeViewModel = recipeViewModel
         List(selection: $recipeViewModel.selectedRecipe) {
             ForEach(searchResults) { recipe in
-                NavigationLink(recipe.name, value: recipe)
+                NavigationLink(recipe.title, value: recipe)
             }
             .onDelete(perform: removeRecipes)
         }
@@ -68,6 +84,31 @@ private struct RecipeList: View {
     }
 }
 
+//// create a list of all recipes
+//private struct AllRecipeList: View {
+//    let recipes: [Recipe]
+//    @Environment(RecipeViewModel.self) private var recipeViewModel
+//    @State private var searchText = ""
+//
+//    
+//    private var searchResults: [Recipe] {
+//        let all = recipeViewModel.recipes
+//        guard !searchText.isEmpty else { return all }
+//        return all.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+//    }
+//    
+//    var body: some View {
+//        @Bindable var recipeViewModel = recipeViewModel
+//        
+//        List(selection: $recipeViewModel.selectedRecipe) {
+//            ForEach(searchResults) { recipe in
+//                NavigationLink(recipe.title, value: recipe)
+//            }
+//        }
+//    }
+//    
+//}
+
 private struct AddRecipeButton: View {
     @Binding var isActive: Bool
     
@@ -84,7 +125,7 @@ private struct AddRecipeButton: View {
 //#Preview("RecipeListView") {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        NavigationStack {
-//            RecipeListView(recipeCategoryName: Category.mammal.name)
+//            RecipeListView(recipeCategoryName: Category.mammal.title)
 //                .environment(RecipeViewModel())
 //        }
 //    }
@@ -98,7 +139,7 @@ private struct AddRecipeButton: View {
 //
 //#Preview("No recipes") {
 //    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeList(recipeCategoryName: Category.fish.name)
+//        RecipeList(recipeCategoryName: Category.fish.title)
 //            .environment(RecipeViewModel())
 //    }
 //}
