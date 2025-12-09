@@ -20,25 +20,25 @@ struct RecipeDetailView: View {
     var body: some View {
         if let recipe = recipeViewModel.selectedRecipe {
             RecipeDetailContentView(recipe: recipe)
-                .navigationTitle("\(recipe.name)")
+                .navigationTitle("\(recipe.title)")
                 .toolbar {
                     Button { isEditing = true
                         print(URL.applicationSupportDirectory.path())
                     } label: {
-                        Label("Edit \(recipe.name)", systemImage: "pencil")
+                        Label("Edit \(recipe.title)", systemImage: "pencil")
                             .help("Edit the recipe")
                     }
                     
                     Button { isDeleting = true } label: {
-                        Label("Delete \(recipe.name)", systemImage: "trash")
+                        Label("Delete \(recipe.title)", systemImage: "trash")
                             .help("Delete the recipe")
                     }
                 }
                 .sheet(isPresented: $isEditing) {
-                    RecipeEditor(recipe: recipe)
+                    RecipeEditor(recipe: recipe, isFavorite: recipe.isFavorite)
                 }
-                .alert("Delete \(recipe.name)?", isPresented: $isDeleting) {
-                    Button("Yes, delete \(recipe.name)", role: .destructive) {
+                .alert("Delete \(recipe.title)?", isPresented: $isDeleting) {
+                    Button("Yes, delete \(recipe.title)", role: .destructive) {
                         delete(recipe)
                     }
                 }
@@ -70,9 +70,14 @@ private struct RecipeDetailContentView: View {
                     Text("\(recipeViewModel.categoryText(for: recipe))")
                 }
                 HStack {
-                    Text("Diet")
+                    Text("Author")
                     Spacer()
-                    Text("\(recipe.diet.rawValue)")
+                    Text("\(recipe.author)")
+                }
+                HStack {
+                    Text("Servings")
+                    Spacer()
+                    Text("\(recipe.servings)")
                 }
             }
         }

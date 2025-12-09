@@ -15,9 +15,16 @@ struct RecipeEditor: View {
         recipe == nil ? "Add Recipe" : "Edit Recipe"
     }
     
-    @State private var name = ""
-    @State private var selectedDiet = Recipe.Diet.herbivorous
+    @State private var title = ""
+    @State private var selectedAuthor = Recipe.Author.cookieSite
+    @State private var timeRequired = ""
+    @State private var servings = ""
+    @State private var expertiseRequired = ""
+    @State private var calories = ""
+    @State var isFavorite: Bool
+    @State private var notes = ""
     @State private var selectedCategory: Category?
+    
     
     @Environment(\.dismiss) private var dismiss
     @Environment(RecipeViewModel.self) private var recipeViewModel
@@ -27,7 +34,7 @@ struct RecipeEditor: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $name)
+                TextField("Title", text: $title)
                 
                 Picker("Category", selection: $selectedCategory) {
                     Text("Select a category").tag(nil as Category?)
@@ -36,11 +43,18 @@ struct RecipeEditor: View {
                     }
                 }
                 
-                Picker("Diet", selection: $selectedDiet) {
-                    ForEach(Recipe.Diet.allCases, id: \.self) { diet in
-                        Text(diet.rawValue).tag(diet)
+                Picker("Author", selection: $selectedAuthor) {
+                    ForEach(Recipe.Author.allCases, id: \.self) { author in
+                        Text(author.rawValue).tag(author)
                     }
                 }
+                
+                TextField("Time Required", text: $timeRequired)
+                TextField("Servings", text: $servings)
+                TextField("Expertise Required", text: $expertiseRequired)
+                TextField("Calories", text: $calories)
+//                TextField("Favorite", text: $isFavorite)
+                TextField("Notes", text: $notes)
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -67,8 +81,8 @@ struct RecipeEditor: View {
             .onAppear {
                 if let recipe {
                     // Edit the incoming recipe.
-                    name = recipe.name
-                    selectedDiet = recipe.diet
+                    title = recipe.title
+                    selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite 
                     selectedCategory = recipe.categories.first // always return optional
                 }
             }
@@ -78,8 +92,9 @@ struct RecipeEditor: View {
     private func save() {
         if let recipe {
             // Edit the recipe.
-            recipe.name = name
-            recipe.diet = selectedDiet
+            recipe.title = title
+            // Convert enum back to String raw value for the model.
+            recipe.author = selectedAuthor.rawValue
             if let category = selectedCategory {
                 recipe.categories = [category]
             } else {
@@ -88,7 +103,7 @@ struct RecipeEditor: View {
             recipeViewModel.update()
         } else {
             // Add a recipe.
-            let newRecipe = Recipe(name: name, diet: selectedDiet)
+            let newRecipe = Recipe(title: title, author: selectedAuthor.rawValue, servings: servings)
             if let category = selectedCategory {
                 newRecipe.categories = [category]
             } else {
@@ -99,14 +114,14 @@ struct RecipeEditor: View {
     }
 }
 
-#Preview("Add recipe") {
-    ModelContainerPreview(ModelContainer.sample) {
-        RecipeEditor(recipe: nil)
-    }
-}
-
-#Preview("Edit recipe") {
-    ModelContainerPreview(ModelContainer.sample) {
-        RecipeEditor(recipe: .pretzels)
-    }
-}
+//#Preview("Add recipe") {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        RecipeEditor(recipe: nil)
+//    }
+//}
+//
+//#Preview("Edit recipe") {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        RecipeEditor(recipe: .pretzels)
+//    }
+//}

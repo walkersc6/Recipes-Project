@@ -23,6 +23,8 @@ struct RecipeCategoryListView: View {
 //            }
             NavigationLink("All Recipes", value: "Recipes")
 
+            // TODO: Create Nav Link for Favorites
+            
             ListCategories(recipeCategories: recipeViewModel.recipeCategories)
         }
         .alert("Reload Sample Data?", isPresented: $isReloadPresented) {

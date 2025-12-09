@@ -60,7 +60,7 @@ private struct RecipeList: View {
             .onDelete(perform: removeRecipes)
         }
         .sheet(isPresented: $isEditorPresented) {
-            RecipeEditor(recipe: nil)
+            RecipeEditor(recipe: nil, isFavorite: false)
         }
         .overlay {
             if searchResults.isEmpty {

@@ -8,10 +8,34 @@ An extension that creates recipe instances for use as sample data.
 import Foundation
 
 extension Recipe {
-    static let cookies = Recipe(name: "Snickerdoodles", diet: .carnivorous)
-    static let cake = Recipe(name: "Sachertorte", diet: .carnivorous)
-    static let pretzels = Recipe(name: "Bavarian Soft Pretzels", diet: .herbivorous)
-    static let gibbon = Recipe(name: "Southern gibbon", diet: .herbivorous)
-    static let sparrow = Recipe(name: "House sparrow", diet: .omnivorous)
-    static let newt = Recipe(name: "Newt", diet: .carnivorous)
+    static let cookies = Recipe(
+        title: "Chocolate Chip Cookies",
+        author: "Christine Walker",
+        servings: "32 Cookies"
+    )
+    static let cake = Recipe(
+        title: "Carrot Cake",
+        author: "Gemini",
+        servings: "12 Slices"
+    )
+    static let pretzels = Recipe(
+        title: "Bavarian Soft Pretzels",
+        author: "Stephen Liddle",
+        servings: "A lot of Pretzels"
+    )
+    static let dinner = Recipe(
+        title: "Steak Dinner",
+        author: "Ron Wilson",
+        servings: "3 Slabs of Steak"
+    )
+    static let soup = Recipe(
+        title: "Taco Soup",
+        author: "Sarah Bohannon",
+        servings: "A lot of Soup"
+    )
+    static let muffin = Recipe(
+        title: "Zucchini Muffins",
+        author: "Mallory Elder",
+        servings: ""
+    )
 }

@@ -25,6 +25,7 @@
 		68E1B4792A7072DF0066CFE9 /* RecipeCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B4782A7072DF0066CFE9 /* RecipeCategoryListView.swift */; };
 		68E1B47F2A707A7E0066CFE9 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1B47E2A707A7E0066CFE9 /* RecipeListView.swift */; };
 		9C4961332EDE83D300EEE6FF /* CompactLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */; };
+		9C4961362EE7B6EC00EEE6FF /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4961352EE7B6EC00EEE6FF /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C4961362EE7B6EC00EEE6FF /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 68BB54592A701B4B008EC4A5;
+			packageReferences = (
+				9C4961342EE7B6EC00EEE6FF /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+			);
 			productRefGroup = 68BB54632A701B4B008EC4A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -503,6 +508,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C4961342EE7B6EC00EEE6FF /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C4961352EE7B6EC00EEE6FF /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C4961342EE7B6EC00EEE6FF /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 68BB545A2A701B4B008EC4A5 /* Project object */;
 }
