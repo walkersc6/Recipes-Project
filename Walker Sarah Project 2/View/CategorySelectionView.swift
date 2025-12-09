@@ -16,6 +16,8 @@ struct CategorySelectionView: View {
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Category.name) private var categories: [Category]
 
+    @State private var showingAddSheet = false
+    
     var body: some View {
         List {
             ForEach(categories) { category in
@@ -31,18 +33,30 @@ struct CategorySelectionView: View {
         .navigationTitle("Select Categories")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    showingAddSheet = true
+                } label: {
+                    Label("Add Category", systemImage: "plus")
+                }
+            }
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
                     dismiss()
                 }
             }
         }
-        .onAppear {
-            print("🟢 CategorySelectionView appeared - selectedIDs count: \(selectedIDs.count)")
+        .sheet(isPresented: $showingAddSheet) {
+            AddCategorySheet(onSave: { newCategory in
+                selectedIDs.insert(newCategory.persistentModelID)
+            })
         }
-        .onDisappear {
-            print("🔴 CategorySelectionView disappearing - selectedIDs count: \(selectedIDs.count)")
-        }
+//        .onAppear {
+//            print("🟢 CategorySelectionView appeared - selectedIDs count: \(selectedIDs.count)")
+//        }
+//        .onDisappear {
+//            print("🔴 CategorySelectionView disappearing - selectedIDs count: \(selectedIDs.count)")
+//        }
     }
 
     private func toggleSelection(for category: Category) {

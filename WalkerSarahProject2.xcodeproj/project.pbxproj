@@ -29,6 +29,7 @@
 		9C4961402EE8A35600EEE6FF /* MultiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9C49613F2EE8A35600EEE6FF /* MultiPicker */; };
 		9C4961422EE8B8C100EEE6FF /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961412EE8B8C100EEE6FF /* CategorySelectionView.swift */; };
 		9C4961442EE8B92100EEE6FF /* CategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */; };
+		9C4961462EE8DBBA00EEE6FF /* AddCategorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4961452EE8DBBA00EEE6FF /* AddCategorySheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		9C4961322EDE83D300EEE6FF /* CompactLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLayoutView.swift; sourceTree = "<group>"; };
 		9C4961412EE8B8C100EEE6FF /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowView.swift; sourceTree = "<group>"; };
+		9C4961452EE8DBBA00EEE6FF /* AddCategorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategorySheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -182,6 +184,7 @@
 				68BB547B2A701C22008EC4A5 /* RecipeDetailView.swift */,
 				68C721252A72DFC700D129C5 /* RecipeEditor.swift */,
 				9C4961432EE8B92100EEE6FF /* CategoryRowView.swift */,
+				9C4961452EE8DBBA00EEE6FF /* AddCategorySheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C721262A72DFC700D129C5 /* RecipeEditor.swift in Sources */,
+				9C4961462EE8DBBA00EEE6FF /* AddCategorySheet.swift in Sources */,
 				9C4961442EE8B92100EEE6FF /* CategoryRowView.swift in Sources */,
 				681BB4F02A8BC8A100986639 /* SampleData+Recipe.swift in Sources */,
 				682FDAAE2A8D0BDE00B53876 /* ModelContainerPreview.swift in Sources */,

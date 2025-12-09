@@ -90,28 +90,27 @@ struct RecipeEditor: View {
                     //                TextField("Favorite", text: $isFavorite)
                     TextField("Notes", text: $notes)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text(editorTitle)
-                    }
-                    
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
-                            withAnimation {
-                                save()
-                                dismiss()
-                            }
-                        }
-                        // Require a category to save changes.
-                        .disabled(selectedCategories.isEmpty || title.isEmpty)
-                    }
-                    
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel", role: .cancel) {
+            }
+            .navigationTitle(editorTitle)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        withAnimation {
+                            save()
                             dismiss()
                         }
                     }
+                    // Require a category to save changes.
+                    .disabled(selectedCategories.isEmpty || title.isEmpty)
                 }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", role: .cancel) {
+                        dismiss()
+                    }
+                }
+            }
                 .onAppear {
                     guard selectedCategoryIDs.isEmpty else {
                         return
@@ -133,8 +132,8 @@ struct RecipeEditor: View {
                         print("🔵 Category names: \(recipe.categories.map { $0.name })")
                     }
                 }
-            }
         }
+        
     }
     
     private func save() {
