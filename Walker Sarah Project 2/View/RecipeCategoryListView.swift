@@ -17,14 +17,8 @@ struct RecipeCategoryListView: View {
         
         // list Categories
         List(selection: $recipeViewModel.selectedCategoryName) {
-            // List option to look at all recipes
-//            Button("All Recipes") {
-//                recipeViewModel.selectedCategoryName = nil
-//            }
             NavigationLink("All Recipes", value: "Recipes")
-
-            // TODO: Create Nav Link for Favorites
-            
+            NavigationLink("Favorites", value: "Favorites")
             ListCategories(recipeCategories: recipeViewModel.recipeCategories)
         }
         .alert("Reload Sample Data?", isPresented: $isReloadPresented) {

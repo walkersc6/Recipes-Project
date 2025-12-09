@@ -15,13 +15,6 @@ struct RecipeListView: View {
     
     var body: some View {
         RecipeList(recipeCategoryName: recipeViewModel.selectedCategoryName)
-//        if let recipeCategoryName = recipeViewModel.selectedCategoryName {
-//            RecipeList(recipeCategoryName: recipeCategoryName)
-//        } else {
-//            // TODO: switch this to list all recipes
-//            ContentUnavailableView("Select a category", systemImage: "sidebar.left")
-//            //AllRecipeList(recipes: recipeViewModel.recipes)
-//        }
     }
 }
 
@@ -37,9 +30,14 @@ private struct RecipeList: View {
         var filtered = recipeViewModel.recipes
         
         // Switched from class code to code from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
-        if let categoryName = recipeCategoryName, categoryName != "Recipes" {
+        if let categoryName = recipeCategoryName, categoryName != "Recipes", categoryName != "Favorites" {
             filtered = filtered.filter { recipe in recipe.categories.contains { $0.name == categoryName }
             }
+        }
+        
+        if recipeCategoryName == "Favorites" {
+            filtered = filtered.filter { recipe in
+                recipe.isFavorite == true}
         }
         
         if !searchText.isEmpty {
@@ -83,31 +81,6 @@ private struct RecipeList: View {
         recipeViewModel.removeRecipes(at: indexSet)
     }
 }
-
-//// create a list of all recipes
-//private struct AllRecipeList: View {
-//    let recipes: [Recipe]
-//    @Environment(RecipeViewModel.self) private var recipeViewModel
-//    @State private var searchText = ""
-//
-//    
-//    private var searchResults: [Recipe] {
-//        let all = recipeViewModel.recipes
-//        guard !searchText.isEmpty else { return all }
-//        return all.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
-//    }
-//    
-//    var body: some View {
-//        @Bindable var recipeViewModel = recipeViewModel
-//        
-//        List(selection: $recipeViewModel.selectedRecipe) {
-//            ForEach(searchResults) { recipe in
-//                NavigationLink(recipe.title, value: recipe)
-//            }
-//        }
-//    }
-//    
-//}
 
 private struct AddRecipeButton: View {
     @Binding var isActive: Bool

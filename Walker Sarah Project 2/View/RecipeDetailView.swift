@@ -22,6 +22,17 @@ struct RecipeDetailView: View {
             RecipeDetailContentView(recipe: recipe)
                 .navigationTitle("\(recipe.title)")
                 .toolbar {
+                    // Favorite Button fixed by Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
+                    Button {
+                        recipe.isFavorite.toggle()
+                    } label: {
+                        Label (
+                            recipe.isFavorite ? "Unfavorite \(recipe.title)" : "Favorite \(recipe.title)",
+                            systemImage: recipe.isFavorite ? "star.fill" : "star"
+                        )
+                        .help(recipe.isFavorite ? "Unfavorite the recipe" : "Favorite the recipe")
+                    }
+                    
                     Button { isEditing = true
                         print(URL.applicationSupportDirectory.path())
                     } label: {
