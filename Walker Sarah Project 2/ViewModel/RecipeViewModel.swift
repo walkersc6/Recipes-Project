@@ -25,7 +25,7 @@ class RecipeViewModel: ContextReferencing {
     // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
     private var refreshID = UUID()
     
-
+    
     // MARK: - Initialization
     required init(modelContext: ModelContext) {
         self.modelContext = modelContext
@@ -41,15 +41,15 @@ class RecipeViewModel: ContextReferencing {
     var recipes: [Recipe] {
         let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.title)])
         //Claude: https://claude.ai/share/bdf88d59-28fd-4807-abbd-5ab154aaac9c
-//        if let selectedCategoryName {
-//            descriptor.predicate = #Predicate<Recipe> { recipe in
-//                recipe.categories.title == selectedCategoryName
-//            }
-//        }
-//        
+        //        if let selectedCategoryName {
+        //            descriptor.predicate = #Predicate<Recipe> { recipe in
+        //                recipe.categories.title == selectedCategoryName
+        //            }
+        //        }
+        //
         return (try? modelContext.fetch(descriptor)) ?? []
     }
-
+    
     // read (all) recipes
     // read favorites
     // read a category's recipes
@@ -68,12 +68,13 @@ class RecipeViewModel: ContextReferencing {
     }
     
     // MARK: - User intents
+    // Claude: https://claude.ai/share/c95253ac-f272-413c-94c2-f9f85cd80bd2
+    func deleteCategory(_ category: Category) {
+        modelContext.delete(category)
+        update()
+    }
     
-    // create recipe
-    // update recipe
-    // delete recipe
-    
-    func delete(_ recipe: Recipe) {
+    func deleteRecipe(_ recipe: Recipe) {
         if selectedRecipe == recipe {
             selectedRecipe = nil
         }
@@ -91,7 +92,6 @@ class RecipeViewModel: ContextReferencing {
     
     func insert(_ recipe: Recipe) {
         modelContext.insert(recipe)
-        //save()
         update()
     }
     
@@ -100,12 +100,6 @@ class RecipeViewModel: ContextReferencing {
         try? modelContext.save()
     }
     
-    func reloadSampleData() {
-        selectedRecipe = nil
-        selectedCategoryName = nil
-        Category.reloadSampleData(modelContext: modelContext)
-        update()
-    }
     
     func removeRecipes(at indexSet: IndexSet) {
         for index in indexSet {
@@ -118,23 +112,14 @@ class RecipeViewModel: ContextReferencing {
         update()
     }
     
-    // Claude:
-//    func save() {
-//        do {
-//            try modelContext.save()
-//        } catch {
-//            print("Error saving context: \(error)")
-//        }
-//        update()
-//    }
     
     // MARK: - Helpers
     
-//    func update() {
-//        // TODO: reload the stored properties (recipes, categories, whatever we're storing)
-//        // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
-//        refreshID = UUID()
-//    }
+    //    func update() {
+    //        // TODO: reload the stored properties (recipes, categories, whatever we're storing)
+    //        // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
+    //        refreshID = UUID()
+    //    }
     
     func update() {
         // Save any pending changes
@@ -147,13 +132,4 @@ class RecipeViewModel: ContextReferencing {
         // Refresh the view
         refreshID = UUID()
     }
-    
-    
-//    init(selectedRecipeCategoryName: String? = nil,
-//         selectedRecipe: Recipe? = nil,
-//         columnVisibility: NavigationSplitViewVisibility = .automatic) {
-//        self.selectedRecipeCategoryName = selectedRecipeCategoryName
-//        self.selectedRecipe = selectedRecipe
-//        self.columnVisibility = columnVisibility
-//    }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2025 Apple. All rights reserved.
 //
 
+//  Creates the row for each Category with a checkmark button
 
 // Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
 

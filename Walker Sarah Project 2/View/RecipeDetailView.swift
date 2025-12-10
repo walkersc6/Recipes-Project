@@ -60,7 +60,7 @@ struct RecipeDetailView: View {
     
     private func delete(_ recipe: Recipe) {
         recipeViewModel.selectedRecipe = nil
-        recipeViewModel.delete(recipe)
+        recipeViewModel.deleteRecipe(recipe)
     }
 }
 
