@@ -26,13 +26,15 @@ private struct RecipeList: View {
     //From Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
     @State private var sortOption: SortOption = .title
     @State private var sortAscending = true
-
+    // Claude:
+    @Environment(\.editMode) private var editMode
+    
     // Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
     enum SortOption: String, CaseIterable {
         case title = "Title"
         case dateAdded = "Date Added"
     }
- 
+    
     // Compute filtered results based on search text (code from class and help from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace)
     private var searchResults: [Recipe] {
         var filtered = recipeViewModel.recipes
@@ -56,31 +58,44 @@ private struct RecipeList: View {
         // Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
         switch sortOption {
             // sort functionality is title is selected
-            case .title:
-                filtered.sort { recipe1, recipe2 in
-                    let comparison = recipe1.title.localizedCaseInsensitiveCompare(recipe2.title) == .orderedAscending
-                    return sortAscending ? comparison : !comparison
-                }
-            // sort functionality if date added is selected
-            case .dateAdded:
-                filtered.sort { recipe1, recipe2 in
-                    guard let date1 = recipe1.dateAdded, let date2 = recipe2.dateAdded else {
-                        return recipe1.dateAdded != nil
-                    }
-                    let comparison = date1 > date2  // Most recent first when ascending
-                    return sortAscending ? comparison : !comparison
-                }
+        case .title:
+            filtered.sort { recipe1, recipe2 in
+                let comparison = recipe1.title.localizedCaseInsensitiveCompare(recipe2.title) == .orderedAscending
+                return sortAscending ? comparison : !comparison
             }
+            // sort functionality if date added is selected
+        case .dateAdded:
+            filtered.sort { recipe1, recipe2 in
+                guard let date1 = recipe1.dateAdded, let date2 = recipe2.dateAdded else {
+                    return recipe1.dateAdded != nil
+                }
+                let comparison = date1 > date2  // Most recent first when ascending
+                return sortAscending ? comparison : !comparison
+            }
+        }
         return filtered
     }
-
+    
     var body: some View {
         @Bindable var recipeViewModel = recipeViewModel
         List(selection: $recipeViewModel.selectedRecipe) {
             ForEach(searchResults) { recipe in
                 NavigationLink(recipe.title, value: recipe)
+                // Claude: https://claude.ai/share/7914692c-90ad-452d-b1bc-58eb5ff3fd8a
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    if recipeCategoryName != "Recipes" {
+                        Button(role: .destructive) {
+                            removeRecipe(recipe)
+                        } label: {
+                            if recipeCategoryName == "Favorites" {
+                                Label("Unfavorite", systemImage: "star.slash")
+                            } else {
+                                Label("Remove", systemImage: "trash")
+                            }
+                        }
+                    }
+                }
             }
-            .onDelete(perform: removeRecipes)
         }
         .sheet(isPresented: $isEditorPresented) {
             RecipeEditor(recipe: nil, isFavorite: false)
@@ -129,10 +144,30 @@ private struct RecipeList: View {
         )
     }
     
-    private func removeRecipes(at indexSet: IndexSet) {
-        recipeViewModel.removeRecipes(at: indexSet)
+    // Claude: https://claude.ai/share/7914692c-90ad-452d-b1bc-58eb5ff3fd8a
+    private func removeRecipe(_ recipe: Recipe) {
+        if recipeCategoryName == "Favorites" {
+            recipe.isFavorite = false
+        } else if let categoryName = recipeCategoryName {
+            if let categoryToRemove = recipe.categories.first(where: { $0.name == categoryName }) {
+                recipe.categories.removeAll { $0.persistentModelID == categoryToRemove.persistentModelID }
+            }
+        }
+        recipeViewModel.update()
     }
 }
+    
+//    // Claude: 
+//    private func removeRecipes(at indexSet: IndexSet) {
+////        withAnimation {
+//            let recipesToRemove = indexSet.map { searchResults[$0] }
+//            recipeViewModel.removeRecipes(recipesToRemove)
+////        }
+//        DispatchQueue.main.async {
+//            editMode?.wrappedValue = .inactive
+//        }
+//    }
+//}
 
 private struct AddRecipeButton: View {
     @Binding var isActive: Bool

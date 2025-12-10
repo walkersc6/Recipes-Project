@@ -9,7 +9,7 @@
 
 // From Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
 
-// used in CategorySelectionView
+// used in CategorySelectionView and RecipeCategoryListView
 import SwiftUI
 
 struct AddCategorySheet: View {
@@ -42,7 +42,8 @@ struct AddCategorySheet: View {
 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
-                        addCategory()                    }
+                        addCategory()
+                    }
                     .disabled(categoryName.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }

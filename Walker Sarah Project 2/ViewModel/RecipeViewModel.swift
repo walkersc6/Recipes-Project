@@ -101,25 +101,34 @@ class RecipeViewModel: ContextReferencing {
     }
     
     
-    func removeRecipes(at indexSet: IndexSet) {
-        for index in indexSet {
-            let recipeToDelete = recipes[index]
-            if selectedRecipe?.persistentModelID == recipeToDelete.persistentModelID { //how to access auto generated ID
-                selectedRecipe = nil
-            }
-            modelContext.delete(recipeToDelete)
-        }
-        update()
-    }
+//    func removeRecipes(_ recipesToRemove: [Recipe]) {
+//        for recipeToRemove in recipesToRemove {
+////            let recipeToRemove = searchResults[index]
+//            
+//            if selectedCategoryName == "Recipes" {
+//                // delete recipe if in all recipes
+//                if selectedRecipe?.persistentModelID == recipeToRemove.persistentModelID { //how to access auto generated ID
+//                    selectedRecipe = nil
+//                }
+//                modelContext.delete(recipeToRemove)
+//            } else if selectedCategoryName == "Favorites" {
+//                // unfavorite recipe if in favorites
+//                recipeToRemove.isFavorite = false
+//            } else if let categoryName = selectedCategoryName {
+//                // remove recipe from the category that is being viewed
+//                // XCODE AI: https://docs.google.com/document/d/11wdM5uDyImeLfteTXA-S2sbhF_1FjWw0ItMX2_JHjk4/edit?usp=sharing
+//                if let categoryToRemove = recipeToRemove.categories.first(where: { $0.name == categoryName }) {
+//                    // Remove by identity (persistentModelID) to be safe
+//                    let idToRemove = categoryToRemove.persistentModelID
+//                    recipeToRemove.categories.removeAll { $0.persistentModelID == idToRemove }
+//                }
+//            }
+//        }
+//        update()
+//    }
     
     
     // MARK: - Helpers
-    
-    //    func update() {
-    //        // TODO: reload the stored properties (recipes, categories, whatever we're storing)
-    //        // Claude: https://claude.ai/share/46cc6586-1c27-4c40-9896-8e1c1be076ab
-    //        refreshID = UUID()
-    //    }
     
     func update() {
         // Save any pending changes
