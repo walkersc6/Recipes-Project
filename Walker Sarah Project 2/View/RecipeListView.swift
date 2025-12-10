@@ -33,11 +33,10 @@ private struct RecipeList: View {
         case dateAdded = "Date Added"
     }
  
-    // Compute filtered results based on search text (code from class and help from Claude: )
+    // Compute filtered results based on search text (code from class and help from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace)
     private var searchResults: [Recipe] {
         var filtered = recipeViewModel.recipes
         
-        // Switched from class code to code from Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace
         if let categoryName = recipeCategoryName, categoryName != "Recipes", categoryName != "Favorites" {
             filtered = filtered.filter { recipe in recipe.categories.contains { $0.name == categoryName }
             }
@@ -56,11 +55,13 @@ private struct RecipeList: View {
         
         // Claude: https://claude.ai/share/15777e80-d8ab-45cd-8474-d4a9cfa403e4
         switch sortOption {
+            // sort functionality is title is selected
             case .title:
                 filtered.sort { recipe1, recipe2 in
                     let comparison = recipe1.title.localizedCaseInsensitiveCompare(recipe2.title) == .orderedAscending
                     return sortAscending ? comparison : !comparison
                 }
+            // sort functionality if date added is selected
             case .dateAdded:
                 filtered.sort { recipe1, recipe2 in
                     guard let date1 = recipe1.dateAdded, let date2 = recipe2.dateAdded else {
@@ -70,7 +71,6 @@ private struct RecipeList: View {
                     return sortAscending ? comparison : !comparison
                 }
             }
-                
         return filtered
     }
 
@@ -122,7 +122,11 @@ private struct RecipeList: View {
                 }
             }
         }
-        .searchable(text: $searchText, prompt: "Search items")
+        .searchable(
+            text: $searchText,
+            placement: .automatic,
+            prompt: "Search items"
+        )
     }
     
     private func removeRecipes(at indexSet: IndexSet) {
@@ -142,29 +146,3 @@ private struct AddRecipeButton: View {
         }
     }
 }
-
-//#Preview("RecipeListView") {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        NavigationStack {
-//            RecipeListView(recipeCategoryName: Category.mammal.title)
-//                .environment(RecipeViewModel())
-//        }
-//    }
-//}
-//
-//#Preview("No selected category") {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeListView(recipeCategoryName: nil)
-//    }
-//}
-//
-//#Preview("No recipes") {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeList(recipeCategoryName: Category.fish.title)
-//            .environment(RecipeViewModel())
-//    }
-//}
-//
-//#Preview("AddRecipeButton") {
-//    AddRecipeButton(isActive: .constant(false))
-//}

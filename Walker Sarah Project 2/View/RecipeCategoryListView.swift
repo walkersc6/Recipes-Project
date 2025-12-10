@@ -41,9 +41,7 @@ struct RecipeCategoryListView: View {
                 }
             }
             ToolbarItem(placement: .automatic) {
-                // Sample Swift Data inspo
-//                EditButton()
-                // Claude: https://claude.ai/share/c95253ac-f272-413c-94c2-f9f85cd80bd2
+            // Claude: https://claude.ai/share/c95253ac-f272-413c-94c2-f9f85cd80bd2
                 Button {
 //                    withAnimation {
                         if editMode?.wrappedValue == .active {

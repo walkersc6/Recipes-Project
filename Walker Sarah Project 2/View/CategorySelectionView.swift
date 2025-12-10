@@ -13,7 +13,6 @@ import SwiftData
 
 struct CategorySelectionView: View {
     @Binding var selectedIDs: Set<PersistentIdentifier>
-    //let categories: [Category]
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Category.name) private var categories: [Category]
 
@@ -29,7 +28,6 @@ struct CategorySelectionView: View {
                     toggleSelection(for: category)
                 }
             }
-//            Button("Add Category")
         }
         .navigationTitle("Select Categories")
         .navigationBarTitleDisplayMode(.inline)
@@ -52,12 +50,6 @@ struct CategorySelectionView: View {
                 selectedIDs.insert(newCategory.persistentModelID)
             })
         }
-//        .onAppear {
-//            print("🟢 CategorySelectionView appeared - selectedIDs count: \(selectedIDs.count)")
-//        }
-//        .onDisappear {
-//            print("🔴 CategorySelectionView disappearing - selectedIDs count: \(selectedIDs.count)")
-//        }
     }
 
     private func toggleSelection(for category: Category) {
