@@ -118,7 +118,7 @@ private struct RecipeList: View {
                         }
                     }
                 } label: {
-                    Label("Sort", systemImage: "line.horizontal.3.decrease.circle")
+                    Label("Sort", systemImage: "slider.vertical.3")
                 }
             }
         }
