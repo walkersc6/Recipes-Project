@@ -18,7 +18,6 @@ struct ThreeColumnContentView: View {
             RecipeCategoryListView()
                 .navigationTitle(recipeViewModel.sidebarTitle)
         } content: {
-            //RecipeListView()
             RecipeListView(recipeCategoryName: recipeViewModel.selectedCategoryName)
                 .navigationTitle(recipeViewModel.contentListTitle)
         } detail: {

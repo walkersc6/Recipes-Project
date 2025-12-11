@@ -7,7 +7,7 @@ A view that displays a data entry form for editing information about a recipe.
 
 import SwiftUI
 import SwiftData
-import MultiPicker
+//import MultiPicker
 
 struct RecipeEditor: View {
     let recipe: Recipe?
@@ -17,7 +17,7 @@ struct RecipeEditor: View {
     }
     
     @State private var title = ""
-    @State private var selectedAuthor = Recipe.Author.cookieSite
+    @State private var author = ""
     @State private var makeTime = ""
     @State private var cookTime = ""
     @State private var servings = ""
@@ -28,6 +28,10 @@ struct RecipeEditor: View {
     @State private var notes = ""
     // Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
     @State private var selectedCategoryIDs: Set<PersistentIdentifier> = []
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+    @State private var ingredients: [IngredientItem] = []
+    @State private var showingAddIngredient = false
+    @State private var editingIngredient: IngredientItem?
     
     @Environment(\.dismiss) private var dismiss
     @Environment(RecipeViewModel.self) private var recipeViewModel
@@ -46,8 +50,6 @@ struct RecipeEditor: View {
         let sortedNames = selectedCategories.map { $0.name }.sorted()
         return sortedNames.joined(separator: ", ")
     }
-    
-    
     
     var body: some View {
         NavigationStack {
@@ -76,31 +78,51 @@ struct RecipeEditor: View {
                     }
                 }
                 
-                Section("Author"){
-                    Picker("Author", selection: $selectedAuthor) {
-                        ForEach(Recipe.Author.allCases, id: \.self) { author in
-                            Text(author.rawValue).tag(author)
-                        }
-                    }
-                }
-                
                 Section("Details") {
-                    TextField("Time to Make", text: $makeTime)
-                    TextField("Time to Bake", text: $cookTime)
+                    TextField("Author", text: $author)
+                    TextField("Prep Time", text: $makeTime)
+                    TextField("Cook Time", text: $cookTime)
                     TextField("Servings", text: $servings)
                     TextField("Expertise Required", text: $expertiseRequired)
                     TextField("Calories", text: $calories)
                     //                TextField("Favorite", text: $isFavorite)
-                    TextField("Notes", text: $notes)
                 }
                 
+                // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
                 Section("Ingredients") {
-//                    TextField("Coming Soon")
+                    if ingredients.isEmpty {
+                        Text("No ingredients added yet")
+                            .foregroundStyle(.secondary)
+                            .font(.subheadline)
+                    } else {
+                        ForEach(Array(ingredients.enumerated()), id: \.element.id) { index, item in
+                            IngredientRow(
+                                item: item,
+                                index: index,
+                                totalCount: ingredients.count,
+                                onMoveUp: { moveIngredientUp(at: index) },
+                                onMoveDown: { moveIngredientDown(at: index) },
+                                onEdit: { editingIngredient = item }
+                            )
+                        }
+                        .onDelete(perform: deleteIngredients)
+                    }
+
+                    Button {
+                        showingAddIngredient = true
+                    } label: {
+                        Label("Add Ingredient", systemImage: "plus.circle.fill")
+                    }
                 }
                 
                 // Claude: https://claude.ai/share/642cefd7-8d65-4aa7-a5b7-501bd0dcb951
                 Section("Instructions") {
                     TextField("Instructions:", text: $instructions, axis: .vertical)
+                        .lineLimit(5...10)
+                }
+                
+                Section("Notes") {
+                    TextField("Notes", text: $notes, axis: .vertical)
                         .lineLimit(5...10)
                 }
             }
@@ -124,39 +146,74 @@ struct RecipeEditor: View {
                     }
                 }
             }
-                .onAppear {
-                    guard selectedCategoryIDs.isEmpty else {
-                        return
-                    }
-                    if let recipe {
-                        // Edit the incoming recipe.
-                        title = recipe.title
-                        selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite
-                        isFavorite = recipe.isFavorite
-                        makeTime = recipe.makeTime
-                        cookTime = recipe.cookTime ?? ""
-                        servings = recipe.servings
-                        expertiseRequired = recipe.expertiseRequired ?? ""
-                        calories = recipe.calories ?? ""
-                        instructions = recipe.instructions
-                        notes = recipe.notes ?? ""
-                        
-                        selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
-                        
-                        print("🔵 RecipeEditor onAppear - Loaded \(selectedCategoryIDs.count) category IDs")
-                        print("🔵 Category names: \(recipe.categories.map { $0.name })")
+        
+            // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+            .sheet(isPresented: $showingAddIngredient) {
+                AddIngredientView { ingredient in
+                    ingredients.append(ingredient)
+                }
+            }
+            
+            // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+            .sheet(item: $editingIngredient) { ingredient in
+                EditIngredientView(ingredient: ingredient) { updated in
+                    if let index = ingredients.firstIndex(where: { $0.id == ingredient.id }) {
+                        ingredients[index] = updated
                     }
                 }
+            }
+            .onAppear {
+                guard selectedCategoryIDs.isEmpty else {
+                    return
+                }
+                if let recipe {
+                    // Edit the incoming recipe.
+                    title = recipe.title
+                    author = recipe.author
+                    isFavorite = recipe.isFavorite
+                    makeTime = recipe.makeTime
+                    cookTime = recipe.cookTime ?? ""
+                    servings = recipe.servings
+                    expertiseRequired = recipe.expertiseRequired ?? ""
+                    calories = recipe.calories ?? ""
+                    instructions = recipe.instructions
+                    notes = recipe.notes ?? ""
+                    
+                    selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
+                    
+                    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+                    ingredients = recipe.sortedIngredients.map {
+                        IngredientItem(name: $0.name, quantity: $0.quantity, unit: $0.unit)
+                    }
+                    
+                }
+            }
         }
         
     }
+    
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+    private func deleteIngredients(at offsets: IndexSet) {
+        ingredients.remove(atOffsets: offsets)
+    }
+    
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+        private func moveIngredientUp(at index: Int) {
+            guard index > 0 else { return }
+            ingredients.swapAt(index, index - 1)
+        }
+    
+        private func moveIngredientDown(at index: Int) {
+            guard index < ingredients.count - 1 else { return }
+            ingredients.swapAt(index, index + 1)
+        }
     
     private func save() {
         if let recipe {
             // Edit the recipe.
             recipe.title = title
             // Convert enum back to String raw value for the model.
-            recipe.author = selectedAuthor.rawValue
+            recipe.author = author
             recipe.isFavorite = isFavorite
             recipe.makeTime = makeTime
             recipe.cookTime = cookTime.isEmpty ? nil : cookTime
@@ -168,12 +225,27 @@ struct RecipeEditor: View {
             
             recipe.categories = selectedCategories
             
+            // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+            recipe.ingredients.forEach { recipeViewModel.deleteIngredient($0) }
+            recipe.ingredients.removeAll()
+            
+            for (index, item) in ingredients.enumerated() {
+                let ingredient = Ingredient(
+                    name: item.name,
+                    quantity: item.quantity,
+                    unit: item.unit ?? "",
+                    order: index
+                )
+                recipeViewModel.insertIngredient(ingredient)
+                recipe.ingredients.append(ingredient)
+            }
+            
             recipeViewModel.update()
         } else {
             // Add a recipe.
             let newRecipe = Recipe(
                 title: title,
-                author: selectedAuthor.rawValue,
+                author: author,
                 makeTime: makeTime,
                 cookTime: cookTime.isEmpty ? nil : cookTime,
                 servings: servings,
@@ -186,10 +258,35 @@ struct RecipeEditor: View {
             
             newRecipe.categories = selectedCategories
             
+            // Claude: https://claude.ai/share/68aaf836-0b34-478a-a991-86d1a5f29e15
+            for (index, item) in ingredients.enumerated() {
+                let ingredient = Ingredient(
+                    name: item.name,
+                    quantity: item.quantity,
+                    unit: item.unit ?? "",
+                    order: index
+                )
+                recipeViewModel.insertIngredient(ingredient)
+                newRecipe.ingredients.append(ingredient)
+            }
+            
             recipeViewModel.insert(newRecipe)
         }
     }
 }
+
+// Claude: https://claude.ai/share/68aaf836-0b34-478a-a991-86d1a5f29e15
+struct IngredientItem: Identifiable {
+    let id = UUID()
+    var name: String
+    var quantity: String
+    var unit: String?
+    
+    static func == (lhs: IngredientItem, rhs: IngredientItem) -> Bool {
+            lhs.id == rhs.id
+        }
+}
+
 
 // Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
 private struct CategoryCell: View {
@@ -199,15 +296,3 @@ private struct CategoryCell: View {
         Text(category.name)
     }
 }
-
-//#Preview("Add recipe") {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeEditor(recipe: nil)
-//    }
-//}
-//
-//#Preview("Edit recipe") {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeEditor(recipe: .pretzels)
-//    }
-//}

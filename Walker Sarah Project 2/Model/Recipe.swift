@@ -24,7 +24,7 @@ final class Recipe {
     var categories: [Category]
     @Relationship(deleteRule: .cascade)
     var ingredients: [Ingredient]
-    // Claude:
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
     var sortedIngredients: [Ingredient] {
         ingredients.sorted(by: { $0.order < $1.order })
     }
@@ -43,14 +43,6 @@ final class Recipe {
         self.notes = notes
         categories = []
         ingredients = []
-    }
-}
- // TODO: Make this include all authors in stored data so you can pick from all the authors for a recipe
-extension Recipe {
-    enum Author: String, CaseIterable, Codable {
-        case cookieSite = "Cookies with Karli"
-        case neighbor = "Sarah Bohannon"
-        case gemini = "Gemini"
     }
 }
 

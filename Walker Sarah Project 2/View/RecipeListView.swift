@@ -156,18 +156,6 @@ private struct RecipeList: View {
         recipeViewModel.update()
     }
 }
-    
-//    // Claude: 
-//    private func removeRecipes(at indexSet: IndexSet) {
-////        withAnimation {
-//            let recipesToRemove = indexSet.map { searchResults[$0] }
-//            recipeViewModel.removeRecipes(recipesToRemove)
-////        }
-//        DispatchQueue.main.async {
-//            editMode?.wrappedValue = .inactive
-//        }
-//    }
-//}
 
 private struct AddRecipeButton: View {
     @Binding var isActive: Bool

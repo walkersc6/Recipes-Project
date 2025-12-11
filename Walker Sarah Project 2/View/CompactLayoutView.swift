@@ -41,8 +41,3 @@ struct CompactRecipeView: View {
         }
     }
 }
-
-
-//#Preview {
-//    CompactLayoutView()
-//}

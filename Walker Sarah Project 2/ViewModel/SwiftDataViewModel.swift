@@ -28,7 +28,6 @@ protocol ContextReferencing {
     var projectedValue: Binding<VM> {
         Binding(
             get: {
-                // NEEDSWORK: check whether I can reuse wrappedValue here instead
                 guard let viewModel else {
                     fatalError("Attempt to access nil viewModel as projected value")
                 }

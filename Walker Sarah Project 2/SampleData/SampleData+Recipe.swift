@@ -90,7 +90,21 @@ extension Recipe {
         servings: "2 servings",
         expertiseRequired: "Easy",
         calories: "280",
-        instructions: "",
+        instructions: """
+            ## Instructions
+
+            1. Preheat your oven or toaster oven to 400°F (200°C)
+
+            2. On a small baking sheet, toss the quartered potatoes with half of the olive oil, rosemary, salt, and pepper
+
+            3. Roast the potatoes for 10 minutes
+
+            4. While the potatoes are roasting, rub the pork chop with the remaining oil, rosemary, salt, and pepper
+
+            5. After 10 minutes, add the pork chop to the baking sheet with the potatoes
+
+            6. Return to the oven and bake for another 15-20 minutes, or until the pork is cooked through and the potatoes are golden
+            """,
         isFavorite: true,
         notes: ""
     )
@@ -102,7 +116,17 @@ extension Recipe {
         servings: "3 servings",
         expertiseRequired: "Easy",
         calories: "300",
-        instructions: "",
+        instructions: """
+            ## Instructions
+
+            1. Pour the dressing into the bottom of a mason jar
+
+            2. Layer the other ingredients in the order listed: chicken/egg first, then cucumber, bell peppers, quinoa, and finally pack the spinach in at the top
+
+            3. Seal the jar
+
+            4. When you're ready to eat, just shake it up and pour it into a bowl!
+            """,
         notes: "I accidentally did zucchini instead of cucumber, and it was still good."
     )
     static let soup = Recipe(
@@ -113,7 +137,19 @@ extension Recipe {
         servings: "A lot of Soup",
         expertiseRequired: "Easy",
         calories: "350",
-        instructions: "",
+        instructions: """
+            ## Instructions
+
+            1. Put all ingredients together in a large pot and heat until soft boil
+
+            2. Reduce heat and simmer for 10-15 minutes
+
+            3. Serve with tortilla chips or chips of choice
+
+            4. Top with shredded cheese, green onions, or other toppings as desired
+
+            > **Crock Pot Option:** Put everything in a crock pot when you won't be home until it's time to eat. Super easy and can be made to your liking!
+            """,
         notes: ""
     )
     static let muffin = Recipe(
@@ -124,7 +160,15 @@ extension Recipe {
         servings: "24 muffins",
         expertiseRequired: "Easy",
         calories: "275",
-        instructions: "",
-        notes: ""
+        instructions: """
+            1. **Preheat oven** to 350°F
+
+            2. **Prepare** muffin pan (grease or use liners)
+
+            3. **Fill** muffin cups with batter 2/3 of the way
+
+            4. **Bake** for 20 minutes or until a toothpick inserted in the center comes out clean
+            """,
+        notes: "Walnuts are optional"
     )
 }

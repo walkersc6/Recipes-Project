@@ -29,6 +29,8 @@ class RecipeViewModel: ContextReferencing {
     // MARK: - Initialization
     required init(modelContext: ModelContext) {
         self.modelContext = modelContext
+        // Claude: https://claude.ai/share/1a07c340-0c6c-4066-8869-ff1217ce0c1e
+        ensureSomeDataExists()
     }
     
     // MARK: - Model access
@@ -40,13 +42,7 @@ class RecipeViewModel: ContextReferencing {
     
     var recipes: [Recipe] {
         let descriptor = FetchDescriptor<Recipe>(sortBy: [SortDescriptor(\Recipe.title)])
-        //Claude: https://claude.ai/share/bdf88d59-28fd-4807-abbd-5ab154aaac9c
-        //        if let selectedCategoryName {
-        //            descriptor.predicate = #Predicate<Recipe> { recipe in
-        //                recipe.categories.title == selectedCategoryName
-        //            }
-        //        }
-        //
+        
         return (try? modelContext.fetch(descriptor)) ?? []
     }
     
@@ -72,6 +68,11 @@ class RecipeViewModel: ContextReferencing {
     func deleteCategory(_ category: Category) {
         modelContext.delete(category)
         update()
+    }
+    
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+    func deleteIngredient(_ ingredient: Ingredient) {
+        modelContext.delete(ingredient)
     }
     
     func deleteRecipe(_ recipe: Recipe) {
@@ -100,33 +101,10 @@ class RecipeViewModel: ContextReferencing {
         try? modelContext.save()
     }
     
-    
-//    func removeRecipes(_ recipesToRemove: [Recipe]) {
-//        for recipeToRemove in recipesToRemove {
-////            let recipeToRemove = searchResults[index]
-//            
-//            if selectedCategoryName == "Recipes" {
-//                // delete recipe if in all recipes
-//                if selectedRecipe?.persistentModelID == recipeToRemove.persistentModelID { //how to access auto generated ID
-//                    selectedRecipe = nil
-//                }
-//                modelContext.delete(recipeToRemove)
-//            } else if selectedCategoryName == "Favorites" {
-//                // unfavorite recipe if in favorites
-//                recipeToRemove.isFavorite = false
-//            } else if let categoryName = selectedCategoryName {
-//                // remove recipe from the category that is being viewed
-//                // XCODE AI: https://docs.google.com/document/d/11wdM5uDyImeLfteTXA-S2sbhF_1FjWw0ItMX2_JHjk4/edit?usp=sharing
-//                if let categoryToRemove = recipeToRemove.categories.first(where: { $0.name == categoryName }) {
-//                    // Remove by identity (persistentModelID) to be safe
-//                    let idToRemove = categoryToRemove.persistentModelID
-//                    recipeToRemove.categories.removeAll { $0.persistentModelID == idToRemove }
-//                }
-//            }
-//        }
-//        update()
-//    }
-    
+    // Claude: https://claude.ai/share/4871cb05-8aae-4ab9-8721-43ffd852c8fd
+    func insertIngredient(_ ingredient: Ingredient) {
+        modelContext.insert(ingredient)
+    }
     
     // MARK: - Helpers
     
