@@ -23,6 +23,7 @@ struct RecipeEditor: View {
     @State private var servings = ""
     @State private var expertiseRequired = ""
     @State private var calories = ""
+    @State private var instructions = ""
     @State var isFavorite: Bool
     @State private var notes = ""
     // Claude: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
@@ -92,6 +93,16 @@ struct RecipeEditor: View {
                     //                TextField("Favorite", text: $isFavorite)
                     TextField("Notes", text: $notes)
                 }
+                
+                Section("Ingredients") {
+//                    TextField("Coming Soon")
+                }
+                
+                // Claude: https://claude.ai/share/642cefd7-8d65-4aa7-a5b7-501bd0dcb951
+                Section("Instructions") {
+                    TextField("Instructions:", text: $instructions, axis: .vertical)
+                        .lineLimit(5...10)
+                }
             }
             .navigationTitle(editorTitle)
             .navigationBarTitleDisplayMode(.inline)
@@ -127,6 +138,7 @@ struct RecipeEditor: View {
                         servings = recipe.servings
                         expertiseRequired = recipe.expertiseRequired ?? ""
                         calories = recipe.calories ?? ""
+                        instructions = recipe.instructions
                         notes = recipe.notes ?? ""
                         
                         selectedCategoryIDs = Set(recipe.categories.map { $0.persistentModelID })
@@ -151,6 +163,7 @@ struct RecipeEditor: View {
             recipe.servings = servings
             recipe.expertiseRequired = expertiseRequired.isEmpty ? nil : expertiseRequired
             recipe.calories = calories.isEmpty ? nil : calories
+            recipe.instructions = instructions
             recipe.notes = notes.isEmpty ? nil : notes
             
             recipe.categories = selectedCategories
@@ -166,6 +179,7 @@ struct RecipeEditor: View {
                 servings: servings,
                 expertiseRequired: expertiseRequired.isEmpty ? nil : expertiseRequired,
                 calories: calories.isEmpty ? nil : calories,
+                instructions: instructions,
                 isFavorite: isFavorite, // First created from this Claude: https://claude.ai/share/b123bd32-020b-4f26-ae5b-071fcb759ace but reformatted with this Claude conversation: https://claude.ai/share/73501a43-4c5f-4020-b12e-2e41d5bfd720
                 notes: notes.isEmpty ? nil : notes
             )

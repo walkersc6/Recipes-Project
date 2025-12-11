@@ -23,13 +23,11 @@ struct InfoCard: View {
                 Image(systemName: icon)
                     .font(.title3)
                     .foregroundStyle(color)
-                
-                Spacer()
-            }
             
-            Text(title)
-                .font(.caption)
-                .foregroundStyle(.secondary)
+                Text(title)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             
             Text(value)
                 .font(.headline)

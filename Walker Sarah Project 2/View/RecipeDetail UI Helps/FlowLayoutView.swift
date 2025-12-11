@@ -30,8 +30,8 @@ struct FlowLayout: Layout {
         )
         for (index, subview) in subviews.enumerated() {
             subview.place(at: CGPoint(x: bounds.minX + result.frames[index].minX,
-                                     y: bounds.minY + result.frames[index].minY),
-                         proposal: .unspecified)
+                                      y: bounds.minY + result.frames[index].minY),
+                          proposal: .unspecified)
         }
     }
     
@@ -61,3 +61,4 @@ struct FlowLayout: Layout {
             self.size = CGSize(width: maxWidth, height: currentY + lineHeight)
         }
     }
+}

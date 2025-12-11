@@ -18,13 +18,14 @@ final class Recipe {
     var servings: String
     var expertiseRequired: String?
     var calories: String?
-//    var ingredients: [Ingredients]
-        //var instructions: String
+    var instructions: String
     var notes: String?
     var isFavorite: Bool
     var categories: [Category]
-    
-    init(title: String, author: String, dateAdded: Date? = nil, makeTime: String, cookTime: String? = nil, servings: String, expertiseRequired: String? = nil, calories: String? = nil, isFavorite: Bool = false, notes: String? = nil) {
+    @Relationship(deleteRule: .cascade)
+    var ingredients: [Ingredient]
+
+    init(title: String, author: String, dateAdded: Date? = nil, makeTime: String, cookTime: String? = nil, servings: String, expertiseRequired: String? = nil, calories: String? = nil, instructions: String, isFavorite: Bool = false, notes: String? = nil) {
         self.title = title
         self.author = author
         self.dateAdded = Date()
@@ -34,10 +35,10 @@ final class Recipe {
         self.expertiseRequired = expertiseRequired
         self.calories = calories
         self.isFavorite = isFavorite
-        //self.instructions = instructions
+        self.instructions = instructions
         self.notes = notes
         categories = []
-        //ingredients = []
+        ingredients = []
     }
 }
  // TODO: Make this include all authors in stored data so you can pick from all the authors for a recipe

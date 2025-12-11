@@ -7,6 +7,7 @@ A view that displays the details of a recipe.
 
 import SwiftUI
 import SwiftData
+import MarkdownUI
 
 struct RecipeDetailView: View {
     
@@ -95,7 +96,7 @@ private struct RecipeDetailContentView: View {
                         color: .green
                     )
                     
-
+                    
                     InfoCard(
                         icon: "timer",
                         title: "Prep Time",
@@ -158,12 +159,51 @@ private struct RecipeDetailContentView: View {
                     .padding(.horizontal, 20)
                 }
                 
+                // Claude: https://claude.ai/share/e23fa34b-5032-43d6-ab53-0ead2e09bab8
+                VStack {
+                    Text("Ingredients")
+                        .font(.title2)
+                        .bold()
+                        .padding(.horizontal, 20)
+                    
+                    if recipe.ingredients.isEmpty {
+                        Text("No ingredients added")
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 20)
+                    } else {
+                        ForEach(recipe.ingredients) { ingredient in
+                            //                            HStack(spacing: 8) {
+                            Text("\(ingredient.quantity) \(ingredient.unit ?? "") \(ingredient.name)")
+                            //                                    .foregroundStyle(.secondary)
+                            //                                Text(ingredient.name)
+                            //                            }
+                                .padding(.horizontal)
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+            
+                
+                // Claude: https://claude.ai/share/642cefd7-8d65-4aa7-a5b7-501bd0dcb951
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Instructions")
+                        .font(.title2)
+                        .bold()
+                        .padding(.horizontal)
+                    
+                    Markdown(recipe.instructions)
+                        .padding(.horizontal, 20)
+                } .padding(.horizontal, 20)
+                
+                
+                
                 // Notes Section
                 if let notes = recipe.notes, !notes.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
                         Label("Notes", systemImage: "note.text")
                             .font(.headline)
                             .foregroundStyle(.secondary)
+                            .padding(.horizontal)
                         
                         Text(notes)
                             .font(.body)

@@ -47,6 +47,15 @@ extension Category {
         Recipe.soup.categories.append(mainDishes)
         Recipe.muffin.categories.append(breakfast)
         Recipe.muffin.categories.append(bakedGood)
+        
+        // ingredients for cookies
+        Recipe.cookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup"))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Butter", quantity: "1/3", unit: "Cup"))
+        
+        // ingredients for oatCookies
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup"))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Brown Sugar", quantity: "1", unit: "Cup"))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Sugar", quantity: "1/2", unit: "Cup"))
     }
     
     static func reloadSampleData(modelContext: ModelContext) {
