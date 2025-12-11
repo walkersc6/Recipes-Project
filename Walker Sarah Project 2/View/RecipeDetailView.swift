@@ -159,41 +159,54 @@ private struct RecipeDetailContentView: View {
                     .padding(.horizontal, 20)
                 }
                 
-                // Claude: https://claude.ai/share/e23fa34b-5032-43d6-ab53-0ead2e09bab8
+//                // Claude: https://claude.ai/share/e23fa34b-5032-43d6-ab53-0ead2e09bab8
                 VStack {
                     Text("Ingredients")
                         .font(.title2)
                         .bold()
-                        .padding(.horizontal, 20)
+//                        .padding(.horizontal, 20)
+                        .padding(.bottom, 4)
                     
                     if recipe.ingredients.isEmpty {
                         Text("No ingredients added")
                             .foregroundStyle(.secondary)
-                            .padding(.horizontal, 20)
+//                            .padding(.horizontal, 20)
                     } else {
-                        ForEach(recipe.ingredients) { ingredient in
-                            //                            HStack(spacing: 8) {
-                            Text("\(ingredient.quantity) \(ingredient.unit ?? "") \(ingredient.name)")
-                            //                                    .foregroundStyle(.secondary)
-                            //                                Text(ingredient.name)
-                            //                            }
-                                .padding(.horizontal)
+                        ForEach(recipe.sortedIngredients) { ingredient in
+                            HStack(spacing: 8) {
+                                Text("•")
+                                    .font(.body)
+                                    .frame(width: 10, alignment: .leading)
+                                Text("\(ingredient.quantity) \(ingredient.unit ?? "") \(ingredient.name)")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                //                                    .foregroundStyle(.secondary)
+                                //                                Text(ingredient.name)
+                            }
+//                                .padding(.horizontal)
                         }
                     }
                 }
                 .padding(.horizontal, 20)
-            
+
                 
                 // Claude: https://claude.ai/share/642cefd7-8d65-4aa7-a5b7-501bd0dcb951
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Instructions")
-                        .font(.title2)
-                        .bold()
-                        .padding(.horizontal)
-                    
-                    Markdown(recipe.instructions)
-                        .padding(.horizontal, 20)
-                } .padding(.horizontal, 20)
+                // formatted by this Claude convo:
+                Section {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Instructions")
+                            .font(.title2)
+                            .bold()
+                            .padding(.bottom, 4)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        Markdown(recipe.instructions)
+//                            .padding(.horizontal, 20)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.horizontal, 20)
+//                    .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+
+                }
                 
                 
                 

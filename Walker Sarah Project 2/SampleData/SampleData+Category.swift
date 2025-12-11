@@ -49,13 +49,31 @@ extension Category {
         Recipe.muffin.categories.append(bakedGood)
         
         // ingredients for cookies
-        Recipe.cookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup"))
-        Recipe.cookies.ingredients.append(Ingredient(name: "Butter", quantity: "1/3", unit: "Cup"))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup", order: 1))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Butter", quantity: "1/3", unit: "Cup", order: 2))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Eggs", quantity: "2", unit: "", order: 3))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Brown Sugar", quantity: "1", unit: "Cup", order: 4))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Sugar", quantity: "1", unit: "Cup", order: 5))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Vanilla", quantity: "2", unit: "Teaspoons", order: 6))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Flour", quantity: "3", unit: "Cups", order: 7))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Baking Soda", quantity: "1", unit: "Teaspoon", order: 8))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Salt", quantity: "1", unit: "Teaspoon", order: 9))
+        Recipe.cookies.ingredients.append(Ingredient(name: "Chocolate Chips", quantity: "2", unit: "Cups", order: 10))
         
         // ingredients for oatCookies
-        Recipe.oatCookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup"))
-        Recipe.oatCookies.ingredients.append(Ingredient(name: "Brown Sugar", quantity: "1", unit: "Cup"))
-        Recipe.oatCookies.ingredients.append(Ingredient(name: "Sugar", quantity: "1/2", unit: "Cup"))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Shortening", quantity: "1", unit: "Cup", order: 1))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Brown Sugar", quantity: "1", unit: "Cup", order: 2))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Sugar", quantity: "1/2", unit: "Cup", order: 3))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Egg", quantity: "1", unit: "", order: 4))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Water", quantity: "1/4", unit: "Cup", order: 5))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Vanilla", quantity: "1", unit: "Teaspoon", order: 6))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Flour", quantity: "1", unit: "Cup", order: 7))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Salt", quantity: "1", unit: "Teaspoon", order: 8))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Cinnamon", quantity: "1", unit: "Teaspoon", order: 9))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Baking Soda", quantity: "1/2", unit: "Teaspoon", order: 10))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Ground Cloves", quantity: "1/2", unit: "Teaspoon", order: 11))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Oatmeal", quantity: "3", unit: "Cups", order: 12))
+        Recipe.oatCookies.ingredients.append(Ingredient(name: "Chocolate Chips", quantity: "2", unit: "Cups", order: 13))
     }
     
     static func reloadSampleData(modelContext: ModelContext) {

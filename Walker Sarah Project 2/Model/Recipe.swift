@@ -24,6 +24,10 @@ final class Recipe {
     var categories: [Category]
     @Relationship(deleteRule: .cascade)
     var ingredients: [Ingredient]
+    // Claude:
+    var sortedIngredients: [Ingredient] {
+        ingredients.sorted(by: { $0.order < $1.order })
+    }
 
     init(title: String, author: String, dateAdded: Date? = nil, makeTime: String, cookTime: String? = nil, servings: String, expertiseRequired: String? = nil, calories: String? = nil, instructions: String, isFavorite: Bool = false, notes: String? = nil) {
         self.title = title
