@@ -1,5 +1,5 @@
 /*
-See the LICENSE.txt file for this sample’s licensing information.
+See the LICENSE.txt file for this sample's licensing information.
 
 Abstract:
 A view that displays the details of a recipe.
@@ -67,37 +67,115 @@ struct RecipeDetailView: View {
 private struct RecipeDetailContentView: View {
     let recipe: Recipe
     @Environment(RecipeViewModel.self) private var recipeViewModel
-
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
+    private var columns: [GridItem] {
+        // Use 3 columns in landscape (regular width), 2 in portrait (compact width)
+        let columnCount = horizontalSizeClass == .regular ? 3 : 2
+        return Array(repeating: GridItem(.flexible(), spacing: 16), count: columnCount)
+    }
+    
     var body: some View {
-        VStack {
-            
-            //ToDo can we delete this emptyview?
-            EmptyView()
-            
-            List {
-                HStack {
-                    Text("Category")
-                    Spacer()
-                    Text("\(recipeViewModel.categoryText(for: recipe))")
+        // Claude: https://claude.ai/share/cb51f93f-335d-4e2e-b986-62fb9e4b2145
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                // Main Info Grid
+                LazyVGrid(columns: columns, spacing: 16) {
+                    InfoCard(
+                        icon: "person.fill",
+                        title: "Author",
+                        value: recipe.author,
+                        color: .orange
+                    )
+                    
+                    InfoCard(
+                        icon: "fork.knife",
+                        title: "Servings",
+                        value: recipe.servings,
+                        color: .green
+                    )
+                    
+
+                    InfoCard(
+                        icon: "timer",
+                        title: "Prep Time",
+                        value: recipe.makeTime,
+                        color: .blue
+                    )
+                    
+                    
+                    if let cookTime = recipe.cookTime, !cookTime.isEmpty {
+                        InfoCard(
+                            icon: "clock.fill",
+                            title: "Cook Time",
+                            value: cookTime,
+                            color: .cyan
+                        )
+                    }
+                    
+                    if let expertise = recipe.expertiseRequired, !expertise.isEmpty {
+                        InfoCard(
+                            icon: "star.fill",
+                            title: "Difficulty",
+                            value: expertise,
+                            color: .purple
+                        )
+                    }
+                    
+                    if let calories = recipe.calories, !calories.isEmpty {
+                        InfoCard(
+                            icon: "flame.fill",
+                            title: "Calories",
+                            value: calories,
+                            color: .red
+                        )
+                    }
+                    
+                    if let dateAdded = recipe.dateAdded {
+                        InfoCard(
+                            icon: "calendar",
+                            title: "Date Added",
+                            value: dateAdded.formatted(date: .abbreviated, time: .omitted),
+                            color: .indigo
+                        )
+                    }
                 }
-                HStack {
-                    Text("Author")
-                    Spacer()
-                    Text("\(recipe.author)")
+                .padding(.horizontal, 20)
+                
+                // Categories Section
+                if !recipe.categories.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Label("Categories", systemImage: "tag.fill")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                        
+                        FlowLayout(spacing: 8) {
+                            ForEach(recipe.categories) { category in
+                                CategoryPill(category: category)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
                 }
-                HStack {
-                    Text("Servings")
-                    Spacer()
-                    Text("\(recipe.servings)")
+                
+                // Notes Section
+                if let notes = recipe.notes, !notes.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Label("Notes", systemImage: "note.text")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                        
+                        Text(notes)
+                            .font(.body)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(12)
+                    }
+                    .padding(.horizontal, 20)
                 }
             }
+            .padding(.vertical, 20)
         }
     }
 }
-
-//#Preview {
-//    ModelContainerPreview(ModelContainer.sample) {
-//        RecipeDetailView(recipe: .kangaroo)
-//            .environment(RecipeViewModel())
-//    }
-//}

@@ -18,7 +18,8 @@ struct RecipeEditor: View {
     
     @State private var title = ""
     @State private var selectedAuthor = Recipe.Author.cookieSite
-    @State private var timeRequired = ""
+    @State private var makeTime = ""
+    @State private var cookTime = ""
     @State private var servings = ""
     @State private var expertiseRequired = ""
     @State private var calories = ""
@@ -83,7 +84,8 @@ struct RecipeEditor: View {
                 }
                 
                 Section("Details") {
-                    TextField("Time Required", text: $timeRequired)
+                    TextField("Time to Make", text: $makeTime)
+                    TextField("Time to Bake", text: $cookTime)
                     TextField("Servings", text: $servings)
                     TextField("Expertise Required", text: $expertiseRequired)
                     TextField("Calories", text: $calories)
@@ -120,7 +122,8 @@ struct RecipeEditor: View {
                         title = recipe.title
                         selectedAuthor = Recipe.Author(rawValue: recipe.author) ?? .cookieSite
                         isFavorite = recipe.isFavorite
-                        timeRequired = recipe.timeRequired ?? ""
+                        makeTime = recipe.makeTime
+                        cookTime = recipe.cookTime ?? ""
                         servings = recipe.servings
                         expertiseRequired = recipe.expertiseRequired ?? ""
                         calories = recipe.calories ?? ""
@@ -143,7 +146,8 @@ struct RecipeEditor: View {
             // Convert enum back to String raw value for the model.
             recipe.author = selectedAuthor.rawValue
             recipe.isFavorite = isFavorite
-            recipe.timeRequired = timeRequired.isEmpty ? nil : timeRequired
+            recipe.makeTime = makeTime
+            recipe.cookTime = cookTime.isEmpty ? nil : cookTime
             recipe.servings = servings
             recipe.expertiseRequired = expertiseRequired.isEmpty ? nil : expertiseRequired
             recipe.calories = calories.isEmpty ? nil : calories
@@ -157,7 +161,8 @@ struct RecipeEditor: View {
             let newRecipe = Recipe(
                 title: title,
                 author: selectedAuthor.rawValue,
-                timeRequired: timeRequired.isEmpty ? nil : timeRequired,
+                makeTime: makeTime,
+                cookTime: cookTime.isEmpty ? nil : cookTime,
                 servings: servings,
                 expertiseRequired: expertiseRequired.isEmpty ? nil : expertiseRequired,
                 calories: calories.isEmpty ? nil : calories,
